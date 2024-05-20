@@ -1,12 +1,17 @@
 class RecipesController < ApplicationController
   
     def recipes
-      @recipes = client.recipes(query: "chicken", addRecipeInstructions: true, addRecipeInformation: true, addRecipeNutrition: true)
-      render json: @recipes, each_serializer: RecipeSerializer
+      @recipes = client.recipes(query: "pork", addRecipeInstructions: true, addRecipeInformation: true, addRecipeNutrition: true)
     rescue StandardError => e
-      render json: { error: e.message }, status: :unprocessable_entity
+      @error = e.message
     end
   
+    # def show
+    #     @recipe = client.recipe_by_ingredients(params[:id], addRecipeInstructions: true, addRecipeInformation: true, addRecipeNutrition: true)
+    #   rescue StandardError => e
+    #     render json: { error: e.message }, status: :unprocessable_entity
+    #   end
+
     private
   
     def client
