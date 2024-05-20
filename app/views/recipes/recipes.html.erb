@@ -1,0 +1,13 @@
+<h1>Recipes</h1>
+
+<ul>
+  <% @recipes.each do |recipe| %>
+    <li>
+      <%# <a href="<%= recipe_path(recipe["id"]) %>
+      <img src="<%= recipe[:image] %>" alt="image of <%=recipe[:title]%>">
+      <h3><%= recipe[:title] %></h3>
+      <p><%= raw recipe[:summary] %></p>
+      <%# </a> %>
+    </li>
+  <% end %>
+</ul>
