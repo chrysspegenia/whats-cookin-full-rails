@@ -42,7 +42,6 @@ class Edamam::V1::Client
       image: data['image'],
       url_source: data['url'],
       health_labels: data['healthLabels'],
-      ingredient_lines: data['ingredientLines'],
       ingredients: data['ingredients'],
       calories: data['calories'],
       cuisine_type: data['cuisineType'],
