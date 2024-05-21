@@ -1,0 +1,48 @@
+<h1>Recipes</h1>
+
+<ul>
+  <% @recipes.each do |recipe| %>
+    <li>
+      <%# <a href="<%= recipe_path(recipe["id"]) %>
+      <img src="<%= recipe[:image] %>" alt="image of <%=recipe[:title]%>">
+      <h3><%= recipe[:title] %></h3>
+      <p><%= recipe[:summary] %></p>
+      <p><%= recipe[:id] %></p>
+      <p>Servings <%= recipe[:serving] %></p>
+      <p>Calories <%= recipe[:calories] %></p>
+      <p>Cuisine type: <%= recipe[:cuisine_type] %></p>
+
+      <p>health label: <%= recipe[:health_labels] %></p>
+      <p>ingredient lines: <%= recipe[:ingredient_lines] %></p>
+      <p>ingredients data: <%= recipe[:ingredients] %></p>
+
+      <% if false %>
+      <div>
+        <p>ingredient lines:</p>
+        <% recipe[health_labels].each do |label|%>
+          <p><%=label%></p>
+        <% end %>
+      </div>
+
+      <div>
+        <p>ingredient lines:</p>
+        <% recipe[ingredient_lines].each do |line|%>
+          <p><%=line%></p>
+        <% end %>
+      </div>
+
+      <div>
+        <p>ingredients data:</p>
+        <% recipe[ingredients].each do |data|%>
+          <p><%=data%></p>
+        <% end %>
+      </div>
+      <%end%>
+      <%# </a> %>
+    </li>
+  <% end %>
+</ul>
+
+<%# <%= @recipes.each do |data|%>
+  <%# <div> <%=data["recipe"]["label"] %></div>
+<%# <%end%>
