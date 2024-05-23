@@ -9,6 +9,13 @@ class EdamamController < ApplicationController
       @recipes = []
     end
 
+    def show
+      @recipe = client.recipe(params[:id])
+    rescue StandardError => e
+      flash[:alert] = { error: e.message, status: :unprocessable_entity }
+      redirect_to edamam_index_path
+    end
+
     private
 
     def perform_search(search_params)
