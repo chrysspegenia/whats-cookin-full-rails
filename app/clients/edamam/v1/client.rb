@@ -16,6 +16,14 @@ class Edamam::V1::Client
     process_recipes(response['hits'])
   end
 
+  def recipe(id)
+    response = request(
+      method: :get,
+      endpoint: "api/recipes/v2/#{id}",
+    )
+    process_recipe(response['recipe'])
+  end
+
   private
 
   def request(method:, endpoint:, params: {}, headers: {}, body: {})
