@@ -7,7 +7,7 @@ class Edamam::V1::Client
   APP_KEY = 'cb2f903846b30a6bd706dda9c82efca1'
   TYPE = 'public'
 
-  def recipes(**params)
+  def recipes(params)
     response = request(
       method: :get,
       endpoint: 'api/recipes/v2',
