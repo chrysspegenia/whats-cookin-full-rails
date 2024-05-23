@@ -9,6 +9,13 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   # resources :recipes
-  resources :edamam, only: [:index]
+  resources :edamam do
+    collection do
+      get :search, to: 'edamam#index'
+    end
+  end
+
+  # get "search" => "edamam#search"
+
   resources :spoonacular, only: [:index]
 end

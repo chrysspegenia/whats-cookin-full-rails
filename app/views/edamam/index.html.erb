@@ -1,5 +1,8 @@
 <h1>Recipes</h1>
 
+<%= render "form" %>
+
+<% if @recipes.present? %>
 <ul>
   <% @recipes.each do |recipe| %>
     <li style="border:2px solid black; margin:5px 0;">
@@ -34,7 +37,10 @@
     </li>
   <% end %>
 </ul>
+<% else %>
+  <div>No recipes</div>
+<% end %>
 
 <%# <%= @recipes.each do |data|%>
-  <%# <div> <%=data["recipe"]["label"] %></div>
+  <%# <div> <%=data["recipe"]["label"] %>
 <%# <%end%>
