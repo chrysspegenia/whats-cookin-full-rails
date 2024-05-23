@@ -6,34 +6,34 @@
 <ul>
   <% @recipes.each do |recipe| %>
     <li style="border:2px solid black; margin:5px 0;">
-      <%# <a href="<%= recipe_path(recipe["id"]) %>
-      <img src="<%= recipe[:image] %>" alt="image of <%=recipe[:title]%>">
-      <h3><%= recipe[:title] %></h3>
-      <p><%= recipe[:summary] %></p>
-      <p><%= recipe[:id] %></p>
-      <p>Servings <%= recipe[:serving] %></p>
-      <p>Calories <%= recipe[:calories] %></p>
-      <p>Cuisine type: <%= recipe[:cuisine_type] %></p>
-      <p>Source: <%= recipe[:url_source] %></p>
-    
-      <div style="border: 2px solid red;">
-        <p>health labels:</p>
-        <ul>
-          <% recipe[:health_labels].each do |label|%>
-            <li><%=label%></li>
-          <% end %>
-        </ul>
-      </div>
+      <%= link_to edamam_path(recipe[:id]) do %>
+        <img src="<%= recipe[:image] %>" alt="image of <%=recipe[:title]%>">
+        <h3><%= recipe[:title] %></h3>
+        <p><%= recipe[:summary] %></p>
+        <p><%= recipe[:id] %></p>
+        <p>Servings <%= recipe[:serving] %></p>
+        <p>Calories <%= recipe[:calories] %></p>
+        <p>Cuisine type: <%= recipe[:cuisine_type] %></p>
+        <p>Source: <%= recipe[:url_source] %></p>
+      
+        <div style="border: 2px solid red;">
+          <p>health labels:</p>
+          <ul>
+            <% recipe[:health_labels].each do |label|%>
+              <li><%=label%></li>
+            <% end %>
+          </ul>
+        </div>
 
-      <div style="border: 2px solid green;">
-        <p>ingredients data:</p>
-        <ul>
-          <% recipe[:ingredients].each do |data|%>
-            <li><%=data%></li>
-          <% end %>
-        </ul>
-      </div>
-      <%# </a> %>
+        <div style="border: 2px solid green;">
+          <p>ingredients data:</p>
+          <ul>
+            <% recipe[:ingredients].each do |data|%>
+              <li><%=data%></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
     </li>
   <% end %>
 </ul>
