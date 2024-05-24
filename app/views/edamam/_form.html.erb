@@ -1,30 +1,35 @@
-<%= form_with url: edamam_index_path, method: :get do %>
-  <div>
-    <%= text_field_tag 'search[title]', params.dig(:search, :title) %>
+<%= form_with url: edamam_index_path, method: :get, class:"search-form" do %>
+  <div class="search-main-section">
+    <i class='bx bx-chevron-down'></i>
+    <%= text_field_tag 'search[title]', 
+        params.dig(:search, :title), 
+        class:"search-input",
+        placeholder: "Search for delicious recipes or ingredients"
+    %>
+    <%= submit_tag "Search", class:"search-btn" %>
   </div>
 
-  <section>
-    <h4>Allergies</h4>
-    <% allergies = %w[alcohol-free celery-free crustacean-free dairy-free egg-free fish-free gluten-free lupine-free mustard-free peanut-free sesame-free shellfish-free soy-free tree-nut-free wheat-free] %>
-    <% allergies.each do |allergy| %>
-      <div>
-        <%= label_tag "search[allergies][#{allergy}]", allergy.humanize %>
-        <%= check_box_tag "search[allergies][#{allergy}]", '1', params.dig(:search, :allergies, allergy) == '1' %>
-      </div>
-    <% end %>
+  <section class="search-sub-section">
+    <div>
+      <h4>Cuisine Type:</h4>
+      <%= select_tag 'search[cuisine_type]', options_for_select([
+          ["--", ""],
+          "American", "Asian", "British", "Caribbean", "Central Europe", "Eastern Europe",
+          "Chinese", "Japanese", "French", "Indian", "Italian", "Kosher",
+          "Mediterranean", "Mexican", "Middle Eastern", "Nordic", "South American", "South East Asian"
+      ], params.dig(:search, :cuisine_type)), class:"select-input" %>
+    </div>
+
+    <div class="allergies-section">
+      <h4>Allergies:</h4>
+      <div class="allergies-list">
+      <% allergies = %w[alcohol-free celery-free crustacean-free dairy-free egg-free fish-free gluten-free lupine-free mustard-free peanut-free sesame-free shellfish-free soy-free tree-nut-free wheat-free] %>
+      <% allergies.each do |allergy| %>
+        <div class="allergy-item">
+          <%= label_tag "search[allergies][#{allergy}]", allergy.humanize, class:"allergy-label" %>
+          <%= check_box_tag "search[allergies][#{allergy}]", '1', params.dig(:search, :allergies, allergy) == '1', class:"allergy-checkbox" %>
+        </div>
+      <% end %>
+    </div>
   </section>
-
-  <div>
-    <h4>Cuisine Type:</h4>
-    <%= select_tag 'search[cuisine_type]', options_for_select([
-        ["--", ""],
-        "American", "Asian", "British", "Caribbean", "Central Europe", "Eastern Europe",
-        "Chinese", "Japanese", "French", "Indian", "Italian", "Kosher",
-        "Mediterranean", "Mexican", "Middle Eastern", "Nordic", "South American", "South East Asian"
-    ], params.dig(:search, :cuisine_type)) %>
-  </div>
-
-  <div>
-    <%= submit_tag "Search" %>
-  </div>
 <% end %>

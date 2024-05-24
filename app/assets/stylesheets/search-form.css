@@ -1,0 +1,119 @@
+:root {
+  --neutral-100: #f2f2f2;
+  --secondary-700: #ff7731;
+  --neutral-500: #bad1de;
+}
+
+.search-form {
+  /* border: 2px solid red; */
+  padding: 10px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.search-main-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+
+.search-main-section i {
+  width: 5%;
+  min-width: fit-content;
+  height: 100%;
+  border-radius: 10px 0 0 10px;
+  background: var(--secondary-700);
+  font-size: 2rem;
+  display: grid;
+  place-items: center;
+  color: var(--neutral-100);
+}
+
+.search-input {
+  outline: none;
+  border: none;
+  width: 85%;
+  padding: 9px 20px;
+  font-size: 1.2rem;
+  background: var(--neutral-100);
+}
+
+.search-btn {
+  right: 0;
+  width: 10%;
+  min-width: fit-content;
+  height: 100%;
+  border-radius: 0 10px 10px 0;
+  background: var(--secondary-700);
+  color: var(--neutral-100);
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.search-sub-section {
+  align-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px 20px;
+  width: 98%;
+  gap: 1em;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2), -5px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.search-sub-section h4 {
+  font-size: 1.1rem;
+  margin: 10px;
+  letter-spacing: 1px;
+}
+
+.select-input {
+  padding: 6px 10px;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  border-radius: 10px;
+}
+
+.allergies-section {
+  flex: 1;
+}
+
+.allergies-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+
+.allergy-checkbox {
+  display: none;
+}
+
+.allergy-item {
+  background: var(--neutral-500);
+  padding: 8px 12px;
+  min-width: fit-content;
+  height: 20px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.3s;
+}
+
+.allergy-item label {
+  font-size: 1.1rem;
+  line-height: 2;
+}
+
+.allergy-item.checked {
+  background: var(--secondary-700);
+  color: var(--neutral-100);
+}
