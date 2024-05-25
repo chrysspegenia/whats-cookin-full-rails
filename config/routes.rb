@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   # resources :recipes
   resources :edamam
 
+  resources :meal_planner, only: [:index]
+
   # get "search" => "edamam#search"
 
   resources :spoonacular, only: [:index]
