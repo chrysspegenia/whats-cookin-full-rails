@@ -7,7 +7,7 @@ module Gemini
       BASE_URI = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent'.freeze
 
       def initialize
-        @api_key = ENV['GEMINI_API_KEY'] || GEMINI_API_KEY
+        @api_key = Rails.application.credentials.dig(:gemini, :api_key)
         @connection = Faraday.new(url: BASE_URI) do |conn|
           conn.headers['Content-Type'] = 'application/json'
           conn.adapter Faraday.default_adapter
