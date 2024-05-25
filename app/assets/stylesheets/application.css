@@ -14,6 +14,14 @@
  *= require_self
  */
 
+:root {
+  --neutral-100: #f2f2f2;
+  --neutral-500: #bad1de;
+  --neutral-900: #21333d;
+  --secondary-700: #ff7731;
+  --secondary-500: #ff9a66;
+}
+
 body {
   background: #d1d9de;
 }
