@@ -1,0 +1,98 @@
+<div class="simple-calendar">
+  <div class="calendar-heading">
+    <span class="calendar-title">
+      <%= t('simple_calendar.week', default: 'Week') %>
+      <%= calendar.start_date.strftime("%B %d, %Y") %>
+        <% if calendar.number_of_weeks > 1 %>
+         - <%= calendar.end_date.strftime("%B %d, %Y") %>
+        <% end %>
+
+    </span>
+
+    <nav>
+      <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
+      <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view %>
+      <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
+    </nav>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <% date_range.slice(0, 7).each do |day| %>
+          <th><%= t('date.abbr_day_names')[day.wday] %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(7) do |week| %>
+        <tr>
+          <% week.each do |day| %>
+            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+              <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<style>
+/* Calendar Container */
+.simple-calendar {
+  font-family: Arial, sans-serif;
+}
+
+/* Calendar Heading */
+.calendar-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-title {
+  font-size: 24px;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+nav a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Calendar Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+.table th {
+  background-color: #f0f0f0;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+</style>
