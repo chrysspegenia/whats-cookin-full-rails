@@ -11,12 +11,36 @@ class EdamamController < ApplicationController
 
     def show
       @recipe = client.recipe(params[:id])
+      @recipe_url = @recipe[:url_source]
+      @recipe_name = @recipe[:title]
+      @ingredients = @recipe[:ingredients]
+      
+      # Rails.logger.debug "Recipe URL: #{@recipe_url}"
+      # Rails.logger.debug "Recipe Name: #{@recipe_name}"
+      # Rails.logger.debug "Ingredients: #{@ingredients}"
+    
+      @instructions = RecipeService.fetch_recipe_instructions(@recipe_url, @recipe_name, @ingredients)
+
+      # Rails.logger.debug "instructions from controller: #{@instructions}"
     rescue StandardError => e
+      Rails.logger.error "Error in show action: #{e.message}"
       flash[:alert] = { error: e.message, status: :unprocessable_entity }
       redirect_to edamam_index_path
     end
+    
+    def fetch_instructions
+      recipe_url = params[:url_source]
+      @recipe_data = RecipeService.fetch_recipe_instructions(recipe_url)
+  
+      if @recipe_data[:error]
+        redirect_to edamam_index_path
+      end
+
+    end
 
     private
+
+    
 
     def perform_search(search_params)
       query = search_params[:title]

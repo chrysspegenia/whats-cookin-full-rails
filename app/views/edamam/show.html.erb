@@ -7,6 +7,19 @@
 <p>Cuisine type: <%= @recipe[:cuisine_type] %></p>
 <p>Source: <%= @recipe[:url_source] %></p>
 
+<div style="border: 2px solid blue;">
+  <p>Recipe Instructions:</p>
+  <ol>
+    <% if @instructions.present? %>
+      <% @instructions.each do |instruction| %>
+        <li><%= instruction %></li>
+      <% end %>
+    <% else %>
+      <li>No instructions found</li>
+    <% end %>
+  </ol>
+</div>
+
 <div style="border: 2px solid red;">
     <p>health labels:</p>
     <ul>
