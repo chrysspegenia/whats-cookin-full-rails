@@ -53,6 +53,7 @@ class Edamam::V1::Client
       ingredients: data['ingredients'],
       calories: data['calories'],
       cuisine_type: data['cuisineType'],
+      meal_type: data['mealType'],
       serving: data["yield"]
     }
   end
