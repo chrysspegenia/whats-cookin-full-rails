@@ -16,10 +16,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_27_051337) do
 
   create_table "recipes", force: :cascade do |t|
     t.string "title", null: false
-    t.string "description", null: false
     t.text "instructions", null: false
     t.string "image_url", null: false
-    t.string "public_code", null: false
+    t.text "health_labels", default: [], array: true
+    t.float "calories"
+    t.string "cuisine_type"
+    t.string "meal_type"
+    t.integer "serving"
+    t.string "url_source"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
