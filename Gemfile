@@ -71,3 +71,5 @@ gem "devise", "~> 4.9"
 gem 'faraday'
 
 gem 'nokogiri'
+
+gem "simple_calendar"
