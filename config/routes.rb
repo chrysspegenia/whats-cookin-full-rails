@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   # resources :recipes
-  resources :edamam
+  resources :edamam, only: [:index, :show] do
+    collection do
+      post :save_recipe
+    end
+  end
 
   # get "search" => "edamam#search"
 

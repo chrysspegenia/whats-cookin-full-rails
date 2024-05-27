@@ -27,7 +27,36 @@ class EdamamController < ApplicationController
       flash[:alert] = { error: e.message, status: :unprocessable_entity }
       redirect_to edamam_index_path
     end
-    
+
+    def save_recipe
+      @recipe = params[:recipe]
+      @instructions = params[:instructions]
+  
+      @new_recipe = Recipe.new(
+        title: @recipe[:title],
+        image_url: @recipe[:image],
+        url_source: @recipe[:url_source],
+        health_labels: @recipe[:health_labels],
+        calories: @recipe[:calories],
+        cuisine_type: @recipe[:cuisine_type],
+        meal_type: @recipe[:meal_type],
+        serving: @recipe[:serving],
+        instructions: @instructions,
+        user_id: current_user.id
+      )
+  
+      if @new_recipe.save
+        flash[:notice] = 'Recipe added successfully'
+        redirect_to edamam_path(@recipe[:id])
+        @all_recipes = current_user.recipes.all
+      else
+        flash[:alert] = 'Failed to add recipe'
+        @all_recipes = "NO RECIPES"
+        redirect_to edamam_path(@recipe[:id])
+        
+      end
+    end
+
     def fetch_instructions
       recipe_url = params[:url_source]
       @recipe_data = RecipeService.fetch_recipe_instructions(recipe_url)

@@ -1,3 +1,13 @@
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div class="alert"><%= flash[:alert] %></div>
+<% end %>
+
+<%= button_to "Add recipe to my library", save_recipe_edamam_index_path(recipe: @recipe, instructions: @instructions), method: :post %>
+
 <img src="<%= @recipe[:image] %>" alt="image of <%=@recipe[:title]%>">
 <h3><%= @recipe[:title] %></h3>
 <p><%= @recipe[:summary] %></p>
@@ -37,3 +47,5 @@
     <% end %>
     </ul>
 </div>
+
+<%= @all_recipes %>
