@@ -53,7 +53,9 @@ class RecipeService
   
       doc = Nokogiri::HTML(html_content)
   
-      title = doc.at_css('title').text
+      title_element = doc.at_css('title')
+      title = title_element ? title_element.text : "No title found"
+      
       instructions = extract_instructions(doc)
   
       {
@@ -62,7 +64,7 @@ class RecipeService
       }
     rescue => e
       Rails.logger.error "Error fetching recipe data: #{e.message}"
-      { error: e.message }
+      { title: "Error", instructions: [], error: e.message }
     end
   
     def self.extract_instructions(doc)
