@@ -24,4 +24,13 @@
 
 body {
   background: #d1d9de;
+  display: grid;
+  grid: 1fr / 250px 1fr;
+  gap: 1em;
+  position: relative;
+}
+
+.content-wrapper {
+  border: 2px solid red;
+  grid-area: 1 / 2 / 2 / 5;
 }
