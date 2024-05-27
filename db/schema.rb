@@ -20,8 +20,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_27_051337) do
     t.string "image_url", null: false
     t.text "health_labels", default: [], array: true
     t.float "calories"
-    t.string "cuisine_type"
-    t.string "meal_type"
+    t.string "cuisine_type", default: [], array: true
+    t.string "meal_type", default: [], array: true
     t.integer "serving"
     t.string "url_source"
     t.datetime "created_at", null: false
