@@ -18,6 +18,16 @@
   --neutral-100: #f2f2f2;
   --neutral-500: #bad1de;
   --neutral-900: #21333d;
+  --primary-100: #b1fbf5;
+  --primary-300: #beeee6;
+  --primary-500: #40dbcf;
+  --primary-700: #29c4bb;
+  --accent-100: #ffecc7;
+  --accent-300: #ffda94;
+  --accent-500: #e5bc6e;
+  --accent-700: #fdb342;
+  --secondary-100: #ffd0b7;
+  --secondary-300: #ffbc99;
   --secondary-700: #ff7731;
   --secondary-500: #ff9a66;
 }
