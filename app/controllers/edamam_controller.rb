@@ -26,7 +26,6 @@ class EdamamController < ApplicationController
       # Rails.logger.debug "instructions from controller: #{@instructions}"
     rescue StandardError => e
       Rails.logger.error "Error in show action: #{e.message}"
-      flash[:alert] = { error: e.message, status: :unprocessable_entity }
       redirect_to edamam_index_path
     end
 
@@ -34,6 +33,13 @@ class EdamamController < ApplicationController
       @recipe = params[:recipe]
       @instructions = params[:instructions]
   
+      existing_recipe = Recipe.find_by(title: @recipe[:title],url_source: @recipe[:url_source], user_id: current_user.id)
+      if existing_recipe
+        flash[:alert] = 'This recipe is already in your collection.'
+        redirect_to edamam_path(@recipe[:id])
+        return
+      end
+
       @new_recipe = Recipe.new(
         title: @recipe[:title],
         image_url: @recipe[:image],
@@ -48,11 +54,10 @@ class EdamamController < ApplicationController
       )
   
       if @new_recipe.save
-        flash[:notice] = 'Recipe added successfully'
+        flash[:notice] = 'Recipe added to your collection.'
         redirect_to edamam_path(@recipe[:id])
       else
-        flash[:alert] = 'Failed to add recipe'
-        @all_recipes = "NO RECIPES"
+        flash[:alert] = 'Recipe could not be added.'
         redirect_to edamam_path(@recipe[:id])
       end
     end
