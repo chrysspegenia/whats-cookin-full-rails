@@ -50,12 +50,10 @@ class EdamamController < ApplicationController
       if @new_recipe.save
         flash[:notice] = 'Recipe added successfully'
         redirect_to edamam_path(@recipe[:id])
-        @all_recipes = current_user.recipes.all
       else
         flash[:alert] = 'Failed to add recipe'
         @all_recipes = "NO RECIPES"
         redirect_to edamam_path(@recipe[:id])
-        
       end
     end
 
