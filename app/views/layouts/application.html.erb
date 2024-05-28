@@ -13,26 +13,6 @@
   </head>
 
   <body>
-    <section class="nav-bar">
-      <h1><i class='bx bx-bowl-hot' ></i> What's Cookin</h1>
-
-      <div class="nav-item-wrapper">
-      <%= link_to(dashboard_index_path, class: "nav-item") do %>
-          <i class='bx bx-home'></i><span class="nav-item-text">Home</span>
-      <% end %>
-      
-      <%=link_to(edamam_index_path, class: "nav-item") do %>
-          <i class='bx bx-search' ></i><span class="nav-item-text">Search</span>
-      <% end %>
-      
-      <%= link_to(meal_planner_index_path, class: "nav-item") do %>
-          <i class='bx bx-calendar'></i><span class="nav-item-text">Meal Planner</span>
-      <% end %>
-    </section>
-
-    <main class="content-wrapper">
-      <%= yield %>
-    </main>
-
+    <%= yield %>
   </body>
 </html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WhatsCookinFullRails</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'%>
+    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag 'search-form', 'data-turbo-track': 'reload', defer: true %>
+  </head>
+
+  <body class="dashboard-body">
+    <section class="nav-bar">
+        <div class="nav-content">
+            <h1><i class='bx bx-bowl-hot' ></i> What's Cookin</h1>
+
+            <div class="nav-item-wrapper">
+                <%= link_to(dashboard_index_path, class: "nav-item") do %>
+                    <i class='bx bx-home'></i><span class="nav-item-text">Home</span>
+                <% end %>
+                
+                <%=link_to(edamam_index_path, class: "nav-item") do %>
+                    <i class='bx bx-search' ></i><span class="nav-item-text">Search</span>
+                <% end %>
+                
+                <%= link_to(meal_planner_index_path, class: "nav-item") do %>
+                    <i class='bx bx-calendar'></i><span class="nav-item-text">Meal Planner</span>
+                <% end %>
+            </div>
+        </div>
+
+      <%= button_to(destroy_user_session_path, method: :delete, class: "nav-item logout-btn") do %>
+          <i class='bx bx-power-off'></i><span>Logout</span>
+      <% end %>
+    </section>
+
+    <main class="content-wrapper">
+      <%= yield %>
+    </main>
+
+  </body>
+</html>
