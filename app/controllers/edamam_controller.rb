@@ -1,5 +1,7 @@
 class EdamamController < ApplicationController
     
+  layout "dashboard_layout"
+
     def index
       if params[:search].present?
         @recipes = perform_search(params[:search])
