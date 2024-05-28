@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   # root "posts#index"
   # resources :recipes
 
+  root "devise/session#new"
+
+  get 'redirect/index'
+
   resources :dashboard
 
   resources :edamam, only: [:index, :show] do
