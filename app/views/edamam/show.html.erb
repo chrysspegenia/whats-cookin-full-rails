@@ -1,9 +1,17 @@
 <% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
+  <div id="notice-modal" class="modal notice-modal">
+    <i class='bx bx-check-circle' ></i>
+    <span><%= flash[:notice] %></span>
+    <i class='bx bx-x close' onclick="closeModal('notice-modal')"></i>
+  </div>
 <% end %>
 
 <% if flash[:alert] %>
-  <div class="alert"><%= flash[:alert] %></div>
+  <div id="alert-modal" class="modal alert-modal">
+    <i class='bx bx-bell' ></i>
+    <span><%= flash[:alert] %></span>
+    <i class='bx bx-x close' onclick="closeModal('alert-modal')"></i>
+  </div>
 <% end %>
 
 <%= button_to "Add recipe to my library", save_recipe_edamam_index_path(recipe: @recipe, instructions: @instructions), method: :post %>
@@ -47,5 +55,3 @@
     <% end %>
     </ul>
 </div>
-
-<%= @all_recipes %>

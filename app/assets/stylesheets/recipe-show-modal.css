@@ -1,0 +1,86 @@
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  right: 50px;
+  bottom: 50px;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px 20px;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  gap: 1em;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.notice-modal {
+  border: 2px solid var(--primary-700);
+  background: var(--primary-100);
+}
+
+.alert-modal {
+  border: 2px solid var(--accent-700);
+  background: var(--accent-100);
+}
+
+.close {
+  color: var(--neutral-900);
+  font-size: 1.3rem;
+  margin-left: 0.5em;
+  padding: 3px;
+  border-radius: 100%;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  background: var(--neutral-100);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@-webkit-keyframes slideIn {
+  from {
+    right: -50px;
+    opacity: 0;
+  }
+  to {
+    right: 50px;
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    right: -50px;
+    opacity: 0;
+  }
+  to {
+    right: 50px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
