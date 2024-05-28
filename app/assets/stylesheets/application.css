@@ -22,7 +22,7 @@
   --secondary-500: #ff9a66;
 }
 
-body {
+.dashboard-body {
   background: #d1d9de;
   display: grid;
   grid: 1fr / 250px 1fr;
