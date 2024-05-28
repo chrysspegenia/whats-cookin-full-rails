@@ -55,7 +55,7 @@ module Gemini
 
       def handle_response(response)
         if response.success?
-          Rails.logger.info "API Response: #{response.body}"
+          # Rails.logger.info "API Response: #{response.body}"
           response_json = JSON.parse(response.body)
           parts = response_json.dig('candidates', 0, 'content', 'parts')
           instructions = parts.map { |part| part['text'].strip }.reject(&:blank?)
