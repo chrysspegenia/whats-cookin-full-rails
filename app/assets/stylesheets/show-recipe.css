@@ -1,0 +1,104 @@
+.recipe-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--secondary-300);
+  margin-bottom: 1em;
+}
+
+.recipe-header h1 {
+  color: var(--secondary-700);
+}
+
+.recipe-header .add-recipe-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: none;
+  background: var(--secondary-700);
+  color: var(--neutral-100);
+  padding: 8px 14px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.recipe-header .add-recipe-btn:hover {
+  background: var(--secondary-500);
+}
+
+.recipe-second-section {
+  display: flex;
+  gap: 3em;
+  margin-bottom: 1em;
+}
+
+.recipe-second-section .recipe-img {
+  border-radius: 10px;
+}
+
+.recipe-second-section .recipe-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.3em;
+  font-size: 1.3rem;
+}
+
+.recipe-info .cuisine-type-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: capitalize;
+}
+
+.recipe-info label {
+  font-weight: bold;
+}
+
+.health-labels-section {
+  background: var(--secondary-700);
+  color: var(--neutral-100);
+  padding: 1em;
+  border-radius: 20px;
+  margin-bottom: 1em;
+}
+
+.health-labels-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  list-style-type: none;
+  width: fit-content;
+}
+
+.label-item {
+  padding: 8px 12px;
+  border: 1px solid var(--secondary-100);
+  border-radius: 20px;
+  font-size: 1.1rem;
+}
+
+.recipe-third-section {
+  display: flex;
+  gap: 1em;
+}
+
+.ingredients-section {
+  background: var(--background);
+  padding: 1em;
+  border-radius: 20px;
+  min-width: fit-content;
+  height: fit-content;
+}
+
+.ingredients-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  font-size: 1.2rem;
+}
+
+.ingredients-wrapper .bx-knife {
+  color: var(--secondary-700);
+}

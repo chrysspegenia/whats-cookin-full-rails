@@ -14,44 +14,57 @@
   </div>
 <% end %>
 
-<%= button_to "Add recipe to my library", save_recipe_edamam_index_path(recipe: @recipe, instructions: @instructions), method: :post %>
+<section class="recipe-header">
+  <h1><%= @recipe[:title] %></h1>
+  <%= button_to save_recipe_edamam_index_path(recipe: @recipe, instructions: @instructions), method: :post, class: "add-recipe-btn" do %>
+    <i class='bx bxs-bookmark-star'></i> Add to my cookbook
+  <% end %>
+</section>
 
-<img src="<%= @recipe[:image] %>" alt="image of <%=@recipe[:title]%>">
-<h3><%= @recipe[:title] %></h3>
-<p><%= @recipe[:summary] %></p>
-<p><%= @recipe[:id] %></p>
-<p>Servings <%= @recipe[:serving] %></p>
-<p>Calories <%= @recipe[:calories] %></p>
-<p>Cuisine type: <%= @recipe[:cuisine_type] %></p>
-<p>Source: <%= @recipe[:url_source] %></p>
-
-<div style="border: 2px solid blue;">
-  <p>Recipe Instructions:</p>
-  <ol>
-    <% if @instructions.present? %>
-      <% @instructions.each do |instruction| %>
-        <li><%= instruction %></li>
+<section class="recipe-second-section">
+  <img src="<%= @recipe[:image] %>" alt="image of <%=@recipe[:title]%>" class="recipe-img">
+  <div class="recipe-info">
+    <p><label>Servings:</label> <%= @recipe[:serving] %></p>
+    <p><label>Calories:</label> <%= @recipe[:calories] %></p>
+    <span class="cuisine-type-info">
+      <label>Cuisine Type:</label>
+      <% @recipe[:cuisine_type].each do |type| %>
+        <p><%= type %></p>
       <% end %>
-    <% else %>
-      <li>No instructions found</li>
-    <% end %>
-  </ol>
-</div>
+    </span>
+    <p><label>Source:</label> <%= @recipe[:url_source] %></p>
+  </div>  
+</section>
 
-<div style="border: 2px solid red;">
-    <p>health labels:</p>
-    <ul>
+<div class="health-labels-section">
+  <h3>Health Labels:</h3>
+  <ul class="health-labels-wrapper">
     <% @recipe[:health_labels].each do |label|%>
-        <li><%=label%></li>
+        <li class="label-item"><%=label%></li>
     <% end %>
-    </ul>
+  </ul>
 </div>
 
-<div style="border: 2px solid green;">
-    <p>ingredients data:</p>
-    <ul>
-    <% @recipe[:ingredients].each do |data|%>
-        <li><%=data%></li>
-    <% end %>
-    </ul>
-</div>
+<section class="recipe-third-section">
+  <section class="ingredients-section">
+      <h3>Ingredients:</h3>
+      <div class="ingredients-wrapper">
+        <% @recipe[:ingredients].each do |data|%>
+            <span><i class='bx bx-knife' ></i> <%=data["text"]%></span>
+        <% end %>
+      </div>
+  </section>
+
+  <div>
+    <p>Instructions:</p>
+    <ol>
+      <% if @instructions.present? %>
+        <% @instructions.each do |instruction| %>
+          <li><%= instruction %></li>
+        <% end %>
+      <% else %>
+        <li>No instructions found</li>
+      <% end %>
+    </ol>
+  </div>
+</section>
