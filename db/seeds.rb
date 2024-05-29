@@ -7,3 +7,23 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# login as user fernando@flexer.com test1234 devise
+
+user = User.find_or_create_by!(email: 'fernando@flexer.com') do |user|
+  user.password = 'test1234'
+end
+
+ingredient1 = Ingredient.find_or_create_by!(name: 'Tomato') do |ingredient|
+  ingredient.quantity = 5
+  ingredient.user = user
+  ingredient.inventory = user.inventory
+end
+
+ingredient2 = Ingredient.find_or_create_by!(name: 'Onion') do |ingredient|
+  ingredient.quantity = 3
+  ingredient.user = user
+  ingredient.inventory = user.inventory
+end
+
+

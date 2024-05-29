@@ -25,4 +25,15 @@ Rails.application.routes.draw do
   # get "search" => "edamam#search"
 
   resources :spoonacular, only: [:index]
+  # resources :inventories, only: [:index]
+  get 'myinventory', to: 'inventories#myinventory'
+
+  resources :inventories do
+    resources :ingredients do 
+      member do
+        patch :decrease
+        patch :increase
+      end
+    end
+  end
 end
