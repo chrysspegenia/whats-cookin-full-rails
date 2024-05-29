@@ -1,25 +1,36 @@
 class InventoriesController < ApplicationController
-
+  before_action :authenticate_user!
   before_action :set_inventory, only: [:show, :edit, :update, :destroy]
+
+  def myinventory
+    @inventory = current_user.inventory
+    @userdetails = current_user
+    @ingredient = @inventory.ingredients.build
+  end
+
+  def index
+    @inventory = current_user.inventory
+    @userdetails = current_user
+  end
 
   def show
   end
 
   def new
-    if @user.inventory
-      redirect_to user_inventory_path(@user, @user.inventory), notice: 'Inventory already exists.'
+    if current_user.inventory
+      redirect_to user_inventory_path(current_user, current_user.inventory), notice: 'Inventory already exists.'
     else
-      @inventory = @user.build_inventory
+      @inventory = current_user.build_inventory
     end
   end
 
   def create
-    if @user.inventory
-      redirect_to user_inventory_path(@user, @user.inventory), notice: 'Inventory already exists.'
+    if current_user.inventory
+      redirect_to user_inventory_path(current_user, current_user.inventory), notice: 'Inventory already exists.'
     else
-      @inventory = @user.build_inventory(inventory_params)
+      @inventory = current_user.build_inventory(inventory_params)
       if @inventory.save
-        redirect_to user_inventory_path(@user, @inventory), notice: 'Inventory was successfully created.'
+        redirect_to user_inventory_path(current_user, @inventory), notice: 'Inventory was successfully created.'
       else
         render :new
       end
@@ -31,7 +42,7 @@ class InventoriesController < ApplicationController
 
   def update
     if @inventory.update(inventory_params)
-      redirect_to user_inventory_path(@user, @inventory), notice: 'Inventory was successfully updated.'
+      redirect_to user_inventory_path(current_user, @inventory), notice: 'Inventory was successfully updated.'
     else
       render :edit
     end
@@ -39,17 +50,13 @@ class InventoriesController < ApplicationController
 
   def destroy
     @inventory.destroy
-    redirect_to new_user_inventory_path(@user), notice: 'Inventory was successfully destroyed.'
+    redirect_to new_user_inventory_path(current_user), notice: 'Inventory was successfully destroyed.'
   end
 
   private
 
-  def set_user
-    @user = User.find(params[:user_id])
-  end
-
   def set_inventory
-    @inventory = @user.inventory
+    @inventory = current_user.inventory
   end
 
   def inventory_params

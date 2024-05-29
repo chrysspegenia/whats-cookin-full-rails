@@ -11,4 +11,15 @@ Rails.application.routes.draw do
   # resources :recipes
   resources :edamam, only: [:index]
   resources :spoonacular, only: [:index]
+  # resources :inventories, only: [:index]
+  get 'myinventory', to: 'inventories#myinventory'
+
+  resources :inventories do
+    resources :ingredients do 
+      member do
+        patch :decrease
+        patch :increase
+      end
+    end
+  end
 end

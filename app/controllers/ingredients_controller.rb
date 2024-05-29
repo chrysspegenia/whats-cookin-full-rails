@@ -1,53 +1,68 @@
-class InventoriesController < ApplicationController
-  before_action :set_inventory, only: [:show, :edit, :update, :destroy]
-
-  def show
-  end
-
-  def new
-    if @user.inventory
-      redirect_to user_inventory_path(@user, @user.inventory), notice: 'Inventory already exists.'
-    else
-      @inventory = @user.build_inventory
-    end
-  end
+class IngredientsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_inventory
+  before_action :set_ingredient, only: [:edit, :update, :destroy, :decrease, :increase]
 
   def create
-    @inventory = @user.build_inventory(inventory_params)
-    if @inventory.save
-      redirect_to user_inventory_path(@user, @inventory), notice: 'Inventory was successfully created.'
+    @ingredient = @inventory.ingredients.build(ingredient_params)
+    @ingredient.user = current_user
+    if @ingredient.save
+      redirect_to myinventory_path, notice: 'Ingredient was successfully created.'
     else
-      render :new
+      @userdetails = current_user
+      render 'inventories/myinventory'
     end
   end
 
   def edit
+    @ingredient = @inventory.ingredients.find(params[:id])
   end
 
   def update
-    if @inventory.update(inventory_params)
-      redirect_to user_inventory_path(@user, @inventory), notice: 'Inventory was successfully updated.'
+    @ingredient = @inventory.ingredients.find(params[:id])
+    if @ingredient.update(ingredient_params)
+      redirect_to myinventory_path, notice: 'Ingredient was successfully updated.'
     else
       render :edit
     end
   end
 
   def destroy
-    @inventory.destroy
-    redirect_to new_user_inventory_path(@user), notice: 'Inventory was successfully destroyed.'
+    @ingredient = @inventory.ingredients.find(params[:id])
+    @ingredient.destroy
+    redirect_to myinventory_path, notice: 'Ingredient was successfully destroyed.'
+  end
+
+  def decrease
+    @ingredient.quantity -= params[:amount].to_i
+    if @ingredient.quantity <= 0
+      @ingredient.destroy
+      notice = 'Ingredient was successfully removed.'
+    else
+      @ingredient.save
+      notice = 'Ingredient quantity was successfully decreased.'
+    end
+    redirect_to myinventory_path, notice: notice
+  end
+
+  def increase
+    @ingredient.quantity += params[:amount].to_i
+    @ingredient.save
+    notice = 'Ingredient quantity was successfully increased.'
+    redirect_to myinventory_path, notice: notice
   end
 
   private
 
-  def set_user
-    @user = User.find(params[:user_id])
-  end
-
   def set_inventory
-    @inventory = @user.inventory
+    @inventory = current_user.inventory
   end
 
-  def inventory_params
-    params.require(:inventory).permit(:user_id)
+  def ingredient_params
+    params.require(:ingredient).permit(:name, :quantity)
+  end
+
+  def set_ingredient
+    @ingredient = @inventory.ingredients.find(params[:id])
   end
 end
