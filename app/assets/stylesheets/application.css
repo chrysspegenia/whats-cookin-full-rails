@@ -46,4 +46,5 @@
   padding: 2em;
   background: var(--neutral-100);
   border-radius: 10px;
+  min-height: 90vh;
 }
