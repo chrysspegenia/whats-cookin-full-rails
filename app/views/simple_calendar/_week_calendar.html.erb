@@ -1,0 +1,59 @@
+<div class="simple-calendar">
+  <div class="calendar-heading">
+    <span class="calendar-title">
+      <h3>Today: 
+      <%= calendar.start_date.strftime("%B %d, %Y") %>
+      </h3>
+
+    </span>
+
+    <nav>
+      <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
+      <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view %>
+      <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
+    </nav>
+  </div>
+
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <% date_range.slice(0, 7).each do |day| %>
+        <th class="<%= day == Date.today ? 'today' : '' %>">
+          <%= t('date.abbr_day_names')[day.wday] %> - <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
+        </th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr class="day">
+      <% date_range.slice(0, 7).each do |day| %>
+        <%= content_tag :td, class: (day == Date.today ? 'today' : '') do %>
+          <div>
+            Breakfast
+            <%= meal_select_options(day == Date.today) %>
+          </div>
+          <div>
+            Lunch
+            <%= meal_select_options(day == Date.today) %>
+          </div>
+          <div>
+            Dinner
+            <%= meal_select_options(day == Date.today) %>
+          </div>
+
+          <% calendar.sorted_events_for(day).each do |event| %>
+            <div><%= event.title %></div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<div>
+    <%= submit_tag "Save Meal Plan", class:"search-btn" %>
+</div>
+

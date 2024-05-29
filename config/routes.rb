@@ -9,7 +9,21 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   # resources :recipes
-  resources :edamam, only: [:index]
+
+  root to: 'redirect#index'
+
+  resources :dashboard
+
+  resources :edamam, only: [:index, :show] do
+    collection do
+      post :save_recipe
+    end
+  end
+
+  resources :meal_planner, only: [:index]
+
+  # get "search" => "edamam#search"
+
   resources :spoonacular, only: [:index]
   # resources :inventories, only: [:index]
   get 'myinventory', to: 'inventories#myinventory'

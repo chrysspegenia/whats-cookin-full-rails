@@ -10,26 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_27_124425) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_27_051337) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "ingredients", force: :cascade do |t|
-    t.string "name"
-    t.integer "quantity"
-    t.bigint "user_id", null: false
-    t.bigint "inventory_id", null: false
+  create_table "recipes", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "instructions", null: false
+    t.string "image_url", null: false
+    t.text "health_labels", default: [], array: true
+    t.float "calories"
+    t.string "cuisine_type", default: [], array: true
+    t.string "meal_type", default: [], array: true
+    t.integer "serving"
+    t.string "url_source"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["inventory_id"], name: "index_ingredients_on_inventory_id"
-    t.index ["user_id"], name: "index_ingredients_on_user_id"
-  end
-
-  create_table "inventories", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_inventories_on_user_id"
+    t.index ["user_id"], name: "index_recipes_on_user_id"
+>>>>>>> origin/main
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,7 +43,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_27_124425) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "ingredients", "inventories"
-  add_foreign_key "ingredients", "users"
-  add_foreign_key "inventories", "users"
+  add_foreign_key "recipes", "users"
 end

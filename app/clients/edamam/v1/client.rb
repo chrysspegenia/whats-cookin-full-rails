@@ -3,17 +3,25 @@ require 'json'
 
 class Edamam::V1::Client
   BASE_URL = 'https://api.edamam.com'
-  APP_ID = 'd67966a5'
-  APP_KEY = 'cb2f903846b30a6bd706dda9c82efca1'
+  APP_ID = Rails.application.credentials.edamam[:app_id]
+  APP_KEY = Rails.application.credentials.edamam[:app_key]
   TYPE = 'public'
 
-  def recipes(**params)
+  def recipes(params)
     response = request(
       method: :get,
       endpoint: 'api/recipes/v2',
       params: params
     )
     process_recipes(response['hits'])
+  end
+
+  def recipe(id)
+    response = request(
+      method: :get,
+      endpoint: "api/recipes/v2/#{id}",
+    )
+    process_recipe(response['recipe'])
   end
 
   private
@@ -45,6 +53,7 @@ class Edamam::V1::Client
       ingredients: data['ingredients'],
       calories: data['calories'],
       cuisine_type: data['cuisineType'],
+      meal_type: data['mealType'],
       serving: data["yield"]
     }
   end

@@ -1,0 +1,70 @@
+<% if flash[:notice] %>
+  <div id="notice-modal" class="modal notice-modal">
+    <i class='bx bx-check-circle' ></i>
+    <span><%= flash[:notice] %></span>
+    <i class='bx bx-x close' onclick="closeModal('notice-modal')"></i>
+  </div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div id="alert-modal" class="modal alert-modal">
+    <i class='bx bx-bell' ></i>
+    <span><%= flash[:alert] %></span>
+    <i class='bx bx-x close' onclick="closeModal('alert-modal')"></i>
+  </div>
+<% end %>
+
+<section class="recipe-header">
+  <h1><%= @recipe[:title] %></h1>
+  <%= button_to save_recipe_edamam_index_path(recipe: @recipe, instructions: @instructions), method: :post, class: "add-recipe-btn" do %>
+    <i class='bx bxs-bookmark-star'></i> Add to my cookbook
+  <% end %>
+</section>
+
+<section class="recipe-second-section">
+  <img src="<%= @recipe[:image] %>" alt="image of <%=@recipe[:title]%>" class="recipe-img">
+  <div class="recipe-info">
+    <p><label>Servings:</label> <%= @recipe[:serving] %></p>
+    <p><label>Calories:</label> <%= @recipe[:calories] %></p>
+    <span class="cuisine-type-info">
+      <label>Cuisine Type:</label>
+      <% @recipe[:cuisine_type].each do |type| %>
+        <p><%= type %></p>
+      <% end %>
+    </span>
+    <p><label>Source:</label> <%= @recipe[:url_source] %></p>
+  </div>  
+</section>
+
+<div class="health-labels-section">
+  <h3>Health Labels:</h3>
+  <ul class="health-labels-wrapper">
+    <% @recipe[:health_labels].each do |label|%>
+        <li class="label-item"><%=label%></li>
+    <% end %>
+  </ul>
+</div>
+
+<section class="recipe-third-section">
+  <section class="ingredients-section">
+      <h3>Ingredients:</h3>
+      <div class="ingredients-wrapper">
+        <% @recipe[:ingredients].each do |data|%>
+            <span><i class='bx bx-knife' ></i> <%=data["text"]%></span>
+        <% end %>
+      </div>
+  </section>
+
+  <div>
+    <p>Instructions:</p>
+    <ol>
+      <% if @instructions.present? %>
+        <% @instructions.each do |instruction| %>
+          <li><%= instruction %></li>
+        <% end %>
+      <% else %>
+        <li>No instructions found</li>
+      <% end %>
+    </ol>
+  </div>
+</section>
