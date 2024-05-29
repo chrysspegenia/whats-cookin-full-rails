@@ -81,17 +81,18 @@
 
 .recipe-third-section {
   display: flex;
-  gap: 1em;
+  gap: 5em;
 }
 
 .ingredients-section {
   background: var(--background);
   padding: 1em;
   border-radius: 20px;
-  min-width: fit-content;
+  width: fit-content;
   height: fit-content;
 }
 
+.instructions-wrapper,
 .ingredients-wrapper {
   display: flex;
   flex-direction: column;
@@ -101,4 +102,12 @@
 
 .ingredients-wrapper .bx-knife {
   color: var(--secondary-700);
+}
+
+.instructions-section {
+  padding: 1em;
+}
+
+.instructions-section h3 {
+  border-bottom: 5px solid var(--secondary-500);
 }

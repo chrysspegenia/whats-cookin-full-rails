@@ -25,7 +25,7 @@
   <img src="<%= @recipe[:image] %>" alt="image of <%=@recipe[:title]%>" class="recipe-img">
   <div class="recipe-info">
     <p><label>Servings:</label> <%= @recipe[:serving] %></p>
-    <p><label>Calories:</label> <%= @recipe[:calories] %></p>
+    <p><label>Calories:</label> <%= limit_decimal_places(@recipe[:calories]) %></p>
     <span class="cuisine-type-info">
       <label>Cuisine Type:</label>
       <% @recipe[:cuisine_type].each do |type| %>
@@ -46,18 +46,10 @@
 </div>
 
 <section class="recipe-third-section">
-  <section class="ingredients-section">
-      <h3>Ingredients:</h3>
-      <div class="ingredients-wrapper">
-        <% @recipe[:ingredients].each do |data|%>
-            <span><i class='bx bx-knife' ></i> <%=data["text"]%></span>
-        <% end %>
-      </div>
-  </section>
-
-  <div>
-    <p>Instructions:</p>
-    <ol>
+  
+  <section class="instructions-section">
+    <h3>Instructions:</h3>
+    <ol class="instructions-wrapper">
       <% if @instructions.present? %>
         <% @instructions.each do |instruction| %>
           <li><%= instruction %></li>
@@ -66,5 +58,14 @@
         <li>No instructions found</li>
       <% end %>
     </ol>
-  </div>
+  </section>
+  
+  <section class="ingredients-section">
+      <h3>Ingredients:</h3>
+      <div class="ingredients-wrapper">
+        <% @recipe[:ingredients].each do |data|%>
+            <span><i class='bx bx-knife' ></i> <%=data["text"]%></span>
+        <% end %>
+      </div>
+  </section>
 </section>
