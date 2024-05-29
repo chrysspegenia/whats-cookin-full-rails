@@ -1,0 +1,52 @@
+<% if @inventory %>
+  <h1>Inventory ID: <%= @inventory.id %></h1>
+  <h1>User ID: <%= @inventory.user_id %></h1>
+  <h1>Date Created: <%= @inventory.created_at.strftime('%B %d, %Y') %></h1>
+  <h1>User Owner: <%= @userdetails.email %></h1>
+  <h2>My Inventory</h2>
+  <ul>
+    <% if @inventory.ingredients.empty? %>
+      <h3>No ingredients found</h3>
+    <% else %>
+      <% @inventory.ingredients.each do |ingredient| %>
+        <% if ingredient.persisted? %> <!-- Ensure ingredient is saved in the database -->
+          <li>
+            <%= ingredient.name %> (Quantity: <%= ingredient.quantity %>)
+            <%= button_to 'Remove 1 Quantity', decrease_inventory_ingredient_path(@inventory, ingredient, amount: 1), method: :patch %>
+            <%= button_to 'Add 1 Quantity', increase_inventory_ingredient_path(@inventory, ingredient, amount: 1), method: :patch %>
+            <%= button_to 'Delete Ingredient', [@inventory, ingredient], method: :delete, data: { confirm: 'Are you sure?' } %>
+          </li>
+        <% end %>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <%= form_with(model: [@inventory, @ingredient], local: true) do |form| %>
+    <% if @ingredient.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
+        <ul>
+          <% @ingredient.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :quantity %>
+      <%= form.number_field :quantity %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit 'Add Ingredient' %>
+    </div>
+  <% end %>
+<% else %>
+  <h1>No Inventory Found</h1>
+<% end %>

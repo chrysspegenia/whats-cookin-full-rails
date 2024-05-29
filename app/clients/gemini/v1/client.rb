@@ -21,7 +21,8 @@ module Gemini
               "parts": [
                 {
                   "text": "Generate detailed cooking instructions for a recipe called '#{recipe_name}' 
-                  using the following ingredients: #{ingredients.join(', ')} in a step by step manner. also add a created from gemini in the end"
+                  using the following ingredients: #{ingredients.join(', ')} in a step by step manner. 
+                  Return only the steps (no numbers), each step on a new line, and no extra text or sections."
                 }
               ]
             }
@@ -38,9 +39,9 @@ module Gemini
             {
               "parts": [
                 {
-                  "text": "Organize the following cooking instructions into a clear 
-                  and structured manner step by step while also removing unnecessary words (like read more or the author): '#{existing_instructions}'
-                  also add a organized from gemini in the end"
+                  "text": "Organize the following cooking instructions into a clear and structured step-by-step format, 
+                  removing any equipment lists,authors,unnecessary wordss or unnecessary notes: '#{existing_instructions}'
+                  Return only the steps(no numbers), each step on a new line, and no extra text or sections."
                 }
               ]
             }
@@ -57,13 +58,23 @@ module Gemini
         if response.success?
           # Rails.logger.info "API Response: #{response.body}"
           response_json = JSON.parse(response.body)
-          parts = response_json.dig('candidates', 0, 'content', 'parts')
-          instructions = parts.map { |part| part['text'].strip }.reject(&:blank?)
-          return instructions.each_slice(2).map(&:join) 
+          text = response_json.dig('candidates', 0, 'content', 'parts', 0, 'text')
+          
+          instructions = parse_instructions(text)
+          return instructions
         else
           Rails.logger.error "API Request Failed: #{response.status} - #{response.body}"
           []
         end
+      end
+
+      def parse_instructions(text)
+        lines = text.split("\n")
+
+        # Clean up each instruction line
+        instructions = lines.map { |line| line.gsub(/\*\*|\n/, '').strip }.reject(&:empty?)
+
+        instructions
       end
       
       
