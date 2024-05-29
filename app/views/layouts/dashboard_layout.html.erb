@@ -15,8 +15,8 @@
 
   <body class="dashboard-body">
     <section class="nav-bar">
-        <div class="nav-content">
-            <h1><i class='bx bx-bowl-hot' ></i> What's Cookin</h1>
+        <div>
+            <h1 class="nav-header">What's Cookin</h1>
 
             <div class="nav-item-wrapper">
                 <%= link_to(dashboard_index_path, class: "nav-item") do %>
@@ -33,7 +33,7 @@
             </div>
         </div>
 
-      <%= button_to(destroy_user_session_path, method: :delete, class: "nav-item logout-btn") do %>
+      <%= button_to(destroy_user_session_path, method: :delete, class: "logout-btn") do %>
           <i class='bx bx-power-off'></i><span>Logout</span>
       <% end %>
     </section>
