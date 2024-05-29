@@ -1,5 +1,5 @@
 .nav-bar {
-  border: 2px solid red;
+  background: var(--neutral-100);
   height: 75vh;
   min-width: fit-content;
   display: flex;
