@@ -10,9 +10,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   # resources :recipes
 
-  root "devise/session#new"
-
-  get 'redirect/index'
+  root to: 'redirect#index'
 
   resources :dashboard
 
