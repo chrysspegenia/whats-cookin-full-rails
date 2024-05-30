@@ -9,6 +9,21 @@
     <%= submit_tag "Search", class:"search-btn" %>
   </div>
 
+  <section class="ingredients-search-wrapper">
+    <h4>Your Ingredients:</h4>
+    <div class="ingredients-search-content">
+      <button type="button" class="check-all-btn">Check All Ingredients</button>
+      <div class="ingredients-list">
+        <% @ingredients.each do |item| %>
+          <div class="ingredient-item">
+              <%= label_tag "search[ingredients][#{item["name"]}]", item["name"].capitalize, class:"ingredient-label" %>
+              <%= check_box_tag "search[ingredients][#{item["name"]}]", '1', params.dig(:search, :ingredients, item["name"]) == '1', class:"ingredient-checkbox" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
   <section class="search-sub-section">
     <div>
       <h4>Cuisine Type:</h4>

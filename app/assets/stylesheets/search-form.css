@@ -48,6 +48,7 @@
   font-size: 1.2rem;
 }
 
+.ingredients-search-wrapper,
 .search-sub-section {
   align-self: center;
   display: flex;
@@ -61,6 +62,7 @@
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2), -5px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
+.ingredients-search-wrapper h4,
 .search-sub-section h4 {
   font-size: 1.1rem;
   margin: 10px;
@@ -79,6 +81,7 @@
   flex: 1;
 }
 
+.ingredients-list,
 .allergies-list {
   display: flex;
   flex-wrap: wrap;
@@ -90,6 +93,7 @@
   display: none;
 }
 
+.ingredient-item,
 .allergy-item {
   background: var(--neutral-500);
   padding: 8px 12px;
@@ -100,14 +104,37 @@
   align-items: center;
   gap: 5px;
   transition: background-color 0.3s;
+  cursor: pointer;
 }
 
+.ingredient-item label,
 .allergy-item label {
   font-size: 1.1rem;
   line-height: 2;
 }
 
+.ingredient-item.checked,
 .allergy-item.checked {
+  background: var(--secondary-700);
+  color: var(--neutral-100);
+}
+
+.ingredients-search-content {
+  display: flex;
+  gap: 1.5em;
+}
+
+.ingredients-search-content .bx-plus-circle {
+  font-size: 1.3rem;
+}
+
+.check-all-btn {
+  height: fit-content;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 1.05rem;
+  border-radius: 5px;
   background: var(--secondary-700);
   color: var(--neutral-100);
 }

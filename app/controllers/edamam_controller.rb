@@ -3,6 +3,8 @@ class EdamamController < ApplicationController
   layout "dashboard_layout"
 
     def index
+      @ingredients = current_user.ingredients
+
       if params[:search].present?
         @recipes = perform_search(params[:search])
       end
@@ -74,19 +76,20 @@ class EdamamController < ApplicationController
 
     private
 
-    
-
     def perform_search(search_params)
-      query = search_params[:title]
+      title = search_params[:title] 
+      ingredients = search_params[:ingredients]&.select { |_, v| v == '1' }&.keys || []
       allergies = search_params[:allergies]&.select { |_, v| v == '1' }&.keys || []
       cuisine_type = search_params[:cuisine_type]
   
+      query = [title, *ingredients].join(" ")
       # Build search parameters hash conditionally
       search_options = {}
       search_options[:q] = query if query.present?
       search_options[:health] = allergies.join(",") if allergies.present?
       search_options[:cuisineType] = cuisine_type if cuisine_type.present?
 
+      puts query
       # Pass the hash to the client.recipes method
       client.recipes(search_options)
     end
