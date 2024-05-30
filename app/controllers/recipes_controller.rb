@@ -1,21 +1,25 @@
 class RecipesController < ApplicationController
-  
-    def recipes
-      @recipes = client.recipes(query: "pork", addRecipeInstructions: true, addRecipeInformation: true, addRecipeNutrition: true)
-    rescue StandardError => e
-      @error = e.message
-    end
-  
-    # def show
-    #     @recipe = client.recipe_by_ingredients(params[:id], addRecipeInstructions: true, addRecipeInformation: true, addRecipeNutrition: true)
-    #   rescue StandardError => e
-    #     render json: { error: e.message }, status: :unprocessable_entity
-    #   end
+  before_action :set_recipes
 
-    private
-  
-    def client
-      Spoonacular::V1::Client.new
-    end
+  layout "dashboard_layout"
+
+  def recipes
+    @recipes = client.recipes(query: "pork", addRecipeInstructions: true, addRecipeInformation: true, addRecipeNutrition: true)
+  rescue StandardError => e
+    @error = e.message
   end
-  
+
+  def user_recipes
+    @recipes
+  end
+
+  private
+
+  def client
+    Spoonacular::V1::Client.new
+  end
+
+  def set_recipes
+    @recipes = current_user.recipes
+  end
+end

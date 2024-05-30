@@ -1,0 +1,28 @@
+<section>
+  <h3>Saved Recipes</h3>
+  <ul class="recipe-list-wrapper">
+    <% @recipes.each do |recipe| %>
+    <li class="recipe-item">
+      <%= link_to edamam_path(recipe[:id]), class: "recipe-link" do %>
+      <img
+        class="recipe-list-img"
+        src="<%= recipe[:image_url] %>"
+        alt="image of <%= recipe[:title] %>"
+      />
+      <div class="recipe-item-info">
+        <h3><%= recipe[:title] %></h3>
+        <span>
+          <% recipe[:meal_type].each do |type| %>
+            <p><%= type %></p>
+          <% end %>
+
+          <% recipe[:cuisine_type].each do |type| %>
+            <p><%= type %></p>
+          <% end %>
+        </span>
+      </div>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+</section>
