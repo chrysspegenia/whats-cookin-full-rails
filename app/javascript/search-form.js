@@ -59,6 +59,7 @@ document.addEventListener("turbo:load", function () {
       let isDisplayed = localStorage.getItem(storageKey) === "true";
       if (isDisplayed) {
         wrapperElement.classList.add("display");
+        displayIngredientsBtn.classList.add("bxs-chevron-up");
       }
     }
 
@@ -68,6 +69,12 @@ document.addEventListener("turbo:load", function () {
         storageKey,
         wrapperElement.classList.contains("display")
       );
+
+      if (wrapperElement.classList.contains("display")) {
+        displayIngredientsBtn.classList.add("bxs-chevron-up");
+      } else {
+        displayIngredientsBtn.classList.remove("bxs-chevron-up");
+      }
     });
   }
 
