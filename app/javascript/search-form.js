@@ -15,6 +15,18 @@ document.addEventListener("turbo:load", function () {
 
   const checkAllBtn = document.querySelector(".check-all-btn");
 
+  function updateButtonText() {
+    const ingredientCheckboxes = document.querySelectorAll(
+      ".ingredient-checkbox"
+    );
+    const allChecked = Array.from(ingredientCheckboxes).every(
+      (checkbox) => checkbox.checked
+    );
+    checkAllBtn.textContent = allChecked
+      ? "Unselect All Ingredients"
+      : "Select All Ingredients";
+  }
+
   checkAllBtn.addEventListener("click", function () {
     const checkboxes = document.querySelectorAll(".ingredient-checkbox");
     const allChecked = Array.from(checkboxes).every(
@@ -26,20 +38,9 @@ document.addEventListener("turbo:load", function () {
       checkbox.dispatchEvent(new Event("change")); // trigger change event to update parent class
     });
 
-    // Update button text
-    checkAllBtn.textContent = allChecked
-      ? "Select All Ingredients"
-      : "Unselect All Ingredients";
+    updateButtonText();
   });
 
   // Initial check to set the button text correctly
-  const ingredientCheckboxes = document.querySelectorAll(
-    ".ingredient-checkbox"
-  );
-  const allCheckedInitial = Array.from(ingredientCheckboxes).every(
-    (checkbox) => checkbox.checked
-  );
-  checkAllBtn.textContent = allCheckedInitial
-    ? "Uncheck All Ingredients"
-    : "Check All Ingredients";
+  updateButtonText();
 });
