@@ -28,8 +28,8 @@ document.addEventListener("turbo:load", function () {
 
     // Update button text
     checkAllBtn.textContent = allChecked
-      ? "Check All Ingredients"
-      : "Uncheck All Ingredients";
+      ? "Select All Ingredients"
+      : "Unselect All Ingredients";
   });
 
   // Initial check to set the button text correctly
