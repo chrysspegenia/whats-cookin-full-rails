@@ -1,6 +1,6 @@
 <%= form_with url: edamam_index_path, method: :get, class:"search-form" do %>
   <div class="search-main-section">
-    <i class='bx bx-chevron-down'></i>
+    <i class='bx bx-chevron-down display-ingredients-btn'></i>
     <%= text_field_tag 'search[title]', 
         params.dig(:search, :title), 
         class:"search-input",
