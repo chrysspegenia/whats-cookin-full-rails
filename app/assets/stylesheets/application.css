@@ -33,6 +33,10 @@
   --background: #d1d9de;
 }
 
+.application-body {
+  background: var(--background);
+}
+
 .dashboard-body {
   background: var(--background);
   display: grid;

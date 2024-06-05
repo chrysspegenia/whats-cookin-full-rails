@@ -1,0 +1,166 @@
+.login-page {
+  display: flex;
+  align-items: center;
+  height: 98vh;
+  padding: 0 5em;
+}
+
+.logo-section {
+  width: 75%;
+  border: 2px solid green;
+}
+
+.devise-form-wrapper {
+  background: var(--neutral-100);
+  width: 25%;
+  padding-bottom: 1em;
+  border-radius: 10px;
+  overflow: hidden;
+  color: var(--neutral-900);
+}
+
+.devise-form-header {
+  margin: 0;
+  padding: 0.5em 2em;
+  font-size: 2rem;
+  width: 100%;
+  background: var(--secondary-700);
+  color: var(--neutral-100);
+  box-sizing: border-box;
+}
+
+.devise-form {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+
+.devise-input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 2em 0;
+}
+
+.devise-input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  padding: 0;
+  border: none;
+  padding-right: 2rem;
+  border-bottom: 2px solid var(--neutral-900);
+  outline: none;
+  font-size: 1.3rem;
+  font-weight: 500;
+  transition: 0.5s;
+  box-sizing: border-box;
+}
+
+.devise-input-box input:focus,
+.devise-input-box input:valid {
+  border-bottom-color: var(--secondary-700);
+}
+
+.devise-input-box label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  color: var(--neutral-900);
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.devise-input-box input:focus ~ label,
+.devise-input-box input:valid ~ label {
+  top: -5px;
+  color: var(--secondary-700);
+}
+
+.devise-input-box i {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: var(--neutral-900);
+  transition: 0.5s;
+}
+
+.devise-input-box input:focus ~ i,
+.devise-input-box input:valid ~ i {
+  color: var(--secondary-700);
+}
+
+.devise-btn {
+  background: var(--secondary-700);
+  color: var(--neutral-100);
+  min-width: fit-content;
+  width: 50%;
+  padding: 10px 14px;
+  border-radius: 20px;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1em;
+}
+
+.actions {
+  display: grid;
+  place-items: center;
+}
+
+.btn-text-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.char-container {
+  position: relative;
+}
+
+.char-container span {
+  display: inline-block;
+  white-space: pre;
+  transition: transform 0.3s;
+  margin: 0 1px;
+}
+
+.char-container span:last-child {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  left: 0;
+}
+
+.char-container span.hovered {
+  transform: translateY(-100%);
+}
+
+.link-text,
+.devise-link {
+  font-size: 1.1rem;
+}
+
+.devise-link {
+  color: var(--secondary-700);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.reset-password-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 98vh;
+}
