@@ -37,6 +37,50 @@ class RecipesController < ApplicationController
     end
   end
 
+  def save_ingredient
+    @recipe = Recipe.find_by(title: params[:title])
+    ingredients_array = @recipe.ingredients
+  
+    # Set the inventory
+    set_inventory
+  
+    if @inventory.present?
+      ingredients_array.each do |ingredient_params|
+        ingredient_params = ActionController::Parameters.new(name: ingredient_params["food"], quantity: ingredient_params["quantity"])
+        ingredient_params.permit!  # Permit all parameters
+        @ingredient = @inventory.ingredients.build(ingredient_params)
+        @ingredient.quantity = 1 if @ingredient.quantity.nil? || @ingredient.quantity == 0
+        @ingredient.user = current_user
+
+        # check if ingredient already exists in inventory
+        existing_ingredient = @inventory.ingredients.find_by(name: @ingredient.name)
+        if existing_ingredient
+          existing_ingredient.quantity += @ingredient.quantity
+          if existing_ingredient.save
+            flash[:notice] ||= []
+            flash[:notice] << "#{ingredient_params["food"]} saved successfully."
+          else
+            flash[:alert] ||= []
+            flash[:alert] << "#{ingredient_params["food"]} failed to save."
+          end
+        else
+          if @ingredient.save
+            flash[:notice] ||= []
+            flash[:notice] << "#{ingredient_params["food"]} saved successfully."
+          else
+            flash[:alert] ||= []
+            flash[:alert] << "#{ingredient_params["food"]} failed to save."
+          end
+        end
+      end
+    else
+      flash[:alert] = "Inventory not found."
+    end
+  end
+  
+  
+  
+
   private
 
   def client
@@ -54,6 +98,7 @@ class RecipesController < ApplicationController
   def filtered_recipe_params
     filtered_params = recipe_params
     filtered_params[:cuisine_type] = filtered_params[:cuisine_type].reject(&:blank?) if filtered_params[:cuisine_type].is_a?(Array)
+    filtered_params[:health_labels] = filtered_params[:health_labels].reject(&:blank?) if filtered_params[:health_labels].is_a?(Array)
     filtered_params[:meal_type] = filtered_params[:meal_type].reject(&:blank?) if filtered_params[:meal_type].is_a?(Array)
     if filtered_params[:instructions].present?
       filtered_params[:instructions] = filtered_params[:instructions].split("\n")
@@ -61,5 +106,11 @@ class RecipesController < ApplicationController
     filtered_params[:image_url] = "https://via.placeholder.com/150" if filtered_params[:image_url].blank?
     filtered_params[:isUserCreated] = true
     filtered_params
+  end
+
+  private
+
+  def set_inventory
+    @inventory = current_user.inventory
   end
 end

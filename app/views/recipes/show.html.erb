@@ -1,8 +1,26 @@
-<%# app/views/recipes/show.html.erb %>
+<% if flash[:alert] %>
+  <div id="alert-modal" class="modal alert-modal">
+    <i class='bx bx-bell' ></i>
+    <span><%= flash[:alert] %></span>
+    <i class='bx bx-x close' onclick="closeModal('alert-modal')"></i>
+  </div>
+<% end %>
+
 <section class="recipe-header">
   <h1><%= @recipe[:title] %></h1>
-  <div class="recipe-tag"><i class='bx bxs-star'></i></div>
+  <% if @recipe[:isUserCreated] == true %>
+    <div class="recipe-tag"><i class='bx bxs-pen'></i></div>
+  <% else %>
+    <div class="recipe-tag"><i class='bx bxs-star'></i></div>
+  <% end %>
 </section>
+
+save ingredients 
+
+<% if user_signed_in? %>
+  <%= button_to "Save Ingredients", save_ingredient_path(title: @recipe.title), method: :post %>
+
+<% end %>
 
 <section class="recipe-second-section">
   <img src="<%= @recipe.image_url %>" alt="image of <%=@recipe[:title]%>" class="recipe-img">
@@ -15,7 +33,9 @@
         <p><%= type %></p>
       <% end %>
     </span>
-    <p><label>Source:</label> <%= @recipe[:url_source] %></p>
+    <% if @recipe[:url_source].present? %>
+      <p><label>Source:</label> <%= @recipe[:url_source] %></p>
+    <% end %>
   </div>  
 </section>
 
@@ -28,9 +48,7 @@
   </ul>
 </div>
 
-
 <section class="recipe-third-section">
-  
   <section class="instructions-section">
     <h3>Instructions:</h3>
     <ol class="instructions-wrapper">
