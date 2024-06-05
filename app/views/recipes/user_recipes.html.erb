@@ -1,7 +1,7 @@
 <section>
   <h1>Saved Recipes</h1>
   <ul class="recipe-list-wrapper">
-    <% @recipes.where(isUserCreated: nil).each do |recipe| %>
+    <% @recipes.where(isUserCreated: false).each do |recipe| %>
     <li class="recipe-item">
       <%= link_to edamam_path(recipe[:id]), class: "recipe-link" do %>
       <img
@@ -9,6 +9,7 @@
         src="<%= recipe[:image_url] %>"
         alt="image of <%= recipe[:title] %>"
       />
+      <%= link_to "View Recipe", recipe_path(recipe.title) %>
       <div class="recipe-item-info">
         <h3><i class='bx bxs-star'></i> <%= recipe[:title] %></h3>
         <span>
@@ -34,6 +35,7 @@
     <% @recipes.where(isUserCreated: true).each do |recipe| %>
     <li class="recipe-item">
       <%= link_to edamam_path(recipe[:id]), class: "recipe-link" do %>
+      <%= link_to "View Recipe", recipe_path(recipe.title) %>
       <div class="recipe-item-info">
         <h3><i class='bx bxs-pen'></i> <%= recipe[:title] %></h3>
         <span>

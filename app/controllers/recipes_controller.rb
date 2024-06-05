@@ -17,6 +17,13 @@ class RecipesController < ApplicationController
     @user_created_recipes = current_user.recipes.where(isUserCreated: true)
   end
 
+  def show
+    @recipe = Recipe.find_by(title: params[:title])
+    if @recipe.nil?
+      redirect_to recipes_path, alert: "Recipe not found."
+    end
+  end
+
   def new
     @recipe = Recipe.new
   end
