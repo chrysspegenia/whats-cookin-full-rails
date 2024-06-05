@@ -1,0 +1,46 @@
+<main class="register-page">
+  <section class="devise-form-wrapper">
+    <h2 class="devise-form-header">Sign up</h2>
+
+    <div class="devise-form">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="devise-input-box">
+          <%= f.text_field :email, autofocus: true, autocomplete: "email", required: true %>
+          <%= f.label :email %>
+          <i class='bx bxs-envelope'></i>
+        </div>
+
+        <div class="devise-input-box">
+          <%= f.password_field :password, autocomplete: "new-password", required: true %>
+          <%= f.label :password %>
+          <i class='bx bxs-lock-alt'></i>
+        </div>
+
+        <div class="devise-input-box">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
+          <%= f.label :password_confirmation %>
+          <i class='bx bxs-lock-alt'></i>
+        </div>
+
+        <div class="actions">
+            <%= f.button :submit, class: "devise-btn" do %>
+              <span class="btn-text-container">
+                <% split_string("Sign up").map do |char| %>
+                  <span class="char-container">
+                    <span class="char"><%= char %></span>
+                    <span class="char"><%= char %></span>
+                  </span>
+                <% end %>
+              </span>
+            <% end %>
+          </div>
+      <% end %>
+
+      <p class="link-text">Already have an account?
+        <%= render "devise/shared/links" %>
+      </p>
+    </div>
+  </section>
+</main>
