@@ -1,0 +1,54 @@
+<section>
+  <h1>Saved Recipes</h1>
+  <ul class="recipe-list-wrapper">
+    <% @recipes.where(isUserCreated: nil).each do |recipe| %>
+    <li class="recipe-item">
+      <%= link_to edamam_path(recipe[:id]), class: "recipe-link" do %>
+      <img
+        class="recipe-list-img"
+        src="<%= recipe[:image_url] %>"
+        alt="image of <%= recipe[:title] %>"
+      />
+      <div class="recipe-item-info">
+        <h3><i class='bx bxs-star'></i> <%= recipe[:title] %></h3>
+        <span>
+          <% recipe[:meal_type].each do |type| %>
+            <p><%= type %></p>
+          <% end %>
+
+          <% recipe[:cuisine_type].each do |type| %>
+            <p><%= type %></p>
+          <% end %>
+        </span>
+      </div>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+</section>
+
+<section>
+  <h1>My Recipes</h1>
+  <%= link_to "Create a new recipe", new_recipe_path, class: "button" %>
+  <ul class="recipe-list-wrapper">
+    <% @recipes.where(isUserCreated: true).each do |recipe| %>
+    <li class="recipe-item">
+      <%= link_to edamam_path(recipe[:id]), class: "recipe-link" do %>
+      <div class="recipe-item-info">
+        <h3><i class='bx bxs-pen'></i> <%= recipe[:title] %></h3>
+        <span>
+          <% recipe[:meal_type].each do |type| %>
+            <p><%= type %></p>
+          <% end %>
+
+          <% recipe[:cuisine_type].each do |type| %>
+            <p><%= type %></p>
+          <% end %>
+            <p><i class='bx bxs-user'> </i><%= recipe.serving %></p>
+        </span>
+      </div>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+</section>

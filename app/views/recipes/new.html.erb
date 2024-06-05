@@ -1,0 +1,54 @@
+<%= form_with(model: @recipe, local: true) do |form| %>
+  <% if @recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+      <ul>
+        <% @recipe.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h1>Create a new recipe</h1>
+  <div class="create-recipe__container">
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title, placeholder: "Meal Name" %>
+    </div>
+
+    <div class="field textarea-field">
+      <%= form.label :instructions %>
+      <%= form.text_area :instructions, placeholder: "instructions, separated per line" %>
+    </div>
+
+    <div class="field select-field">
+      <%= form.label :health_labels %>
+      <%= form.select :health_labels, options_for_select(["None", "alcohol-free", "celery-free", "crustacean-free", "dairy-free", "egg-free", "fish-free", "gluten-free", "lupine-free", "mustard-free", "peanut-free", "sesame-free", "shellfish-free", "soy-free", "tree-nut-free", "wheat-free"],@recipe.health_labels), multiple: true, name: 'recipe[health_labels][]' %>
+    </div>
+
+    <div class="field">
+      <%= form.label :calories %>
+      <%= form.number_field :calories, placeholder: " total calories" %>
+    </div>
+
+    <div class="field select-field">
+      <%= form.label :cuisine_type %>
+      <%= form.select :cuisine_type, options_for_select(["American", "Asian", "British", "Caribbean", "Central Europe", "Eastern Europe", "Chinese", "Japanese", "French", "Indian", "Italian", "Kosher", "Mediterranean", "Mexican", "Middle Eastern", "Nordic", "South American", "South East Asian"], selected: @recipe.cuisine_type), { prompt: 'Select Cuisine Type' }, name: 'recipe[cuisine_type][]' %>
+    </div>
+
+    <div class="field select-field">
+      <%= form.label :meal_type %>
+      <%= form.select :meal_type, options_for_select(["Dinner", "Breakfast", "Lunch", "Snack"], @recipe.meal_type), multiple: true, name: 'recipe[meal_type][]' %>
+    </div>
+
+    <div class="field">
+      <%= form.label :serving %>
+      <%= form.number_field :serving, placeholder: " servings per plate (per person)" %>
+    </div>
+    
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  </div>
+<% end %>
