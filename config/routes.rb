@@ -23,11 +23,13 @@ Rails.application.routes.draw do
   resources :meal_planner, only: [:index]
 
   # get "search" => "edamam#search"
+  resources :recipes, param: :title
+  post 'recipes/:title/save_ingredient', to: 'recipes#save_ingredient', as: 'save_ingredient'
 
   resources :spoonacular, only: [:index]
   # resources :inventories, only: [:index]
   get 'myinventory', to: 'inventories#myinventory'
-
+  
   get 'myrecipes', to: 'recipes#user_recipes'
   resources :recipes, only: [:index, :show, :new, :create]
 

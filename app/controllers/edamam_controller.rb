@@ -52,7 +52,9 @@ class EdamamController < ApplicationController
         meal_type: @recipe[:meal_type],
         serving: @recipe[:serving],
         instructions: @instructions,
-        user_id: current_user.id
+        user_id: current_user.id,
+        ingredients: @recipe[:ingredients],
+        isUserCreated: false
       )
   
       if @new_recipe.save
