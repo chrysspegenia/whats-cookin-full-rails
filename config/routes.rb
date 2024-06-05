@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get 'myinventory', to: 'inventories#myinventory'
 
   get 'myrecipes', to: 'recipes#user_recipes'
+  resources :recipes, only: [:index, :show, :new, :create]
 
   resources :inventories do
     resources :ingredients do 
