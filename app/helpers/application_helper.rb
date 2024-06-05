@@ -4,5 +4,10 @@ module ApplicationHelper
         number = number.to_f
         format("%.#{decimal_places}f", number)
       end
+
+      def split_string(str)
+        str.chars
+      end
+      
       
 end
