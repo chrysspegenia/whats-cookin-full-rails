@@ -1,7 +1,6 @@
 .nav-bar {
   background: var(--neutral-100);
   height: 75vh;
-  min-width: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -13,11 +12,16 @@
 }
 
 .nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25em;
   background: var(--secondary-700);
   color: var(--neutral-100);
   margin: 0;
-  padding: 1em 0;
+  padding: 0.75em;
   text-align: center;
+  border-radius: 10px 10px 0 0;
 }
 
 .nav-item-wrapper {
@@ -30,7 +34,8 @@
 
 .nav-item {
   display: flex;
-  gap: 15px;
+  align-items: center;
+  gap: 5px;
   padding: 10px 1em;
   border-radius: 10px;
   text-decoration: none;
@@ -48,24 +53,47 @@
   position: absolute;
   bottom: 2px;
   left: 0;
-  opacity: 0;
-  transition: 0.2s ease;
+  transform: scaleX(0);
+  transition: transform 0.2s ease-in-out;
   pointer-events: none;
 }
 
 .nav-item:hover:after {
-  opacity: 1;
+  transform: scaleX(1);
 }
 
 .nav-item i {
   color: var(--secondary-700);
-  font-size: 1.5rem;
+  font-size: 2rem;
+}
+
+.nav-header-logo.active,
+.nav-item-text {
+  opacity: 0;
+  max-width: 0;
+  transition: max-width 0.5s ease, opacity 0.5s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.nav-header-logo,
+.nav-item-text.active {
+  display: block;
+  opacity: 1;
+  max-width: 150px;
+}
+
+.nav-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap-reverse;
 }
 
 .logout-btn {
   display: flex;
   align-items: center;
-  gap: 15px;
+  justify-content: center;
   margin-bottom: 1em;
   padding: 8px 20px;
   border-radius: 10px;
@@ -77,8 +105,25 @@
   letter-spacing: 1px;
   border: 2px solid;
   transition: 0.2s ease;
+  overflow: hidden;
 }
 
+.resize-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1em;
+  padding: 8px 20px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  border: 2px solid;
+  transition: 0.2s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.resize-btn i,
 .logout-btn i {
   font-size: 1.5rem;
 }
@@ -87,4 +132,10 @@
   background: var(--accent-100);
   border-color: var(--accent-500);
   color: var(--secondary-700);
+}
+
+.resize-btn:hover {
+  background: var(--primary-100);
+  border-color: var(--primary-500);
+  color: var(--primary-700);
 }

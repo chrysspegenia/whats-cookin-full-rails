@@ -1,6 +1,6 @@
 <%= form_with url: edamam_index_path, method: :get, class:"search-form" do %>
   <div class="search-main-section">
-    <i class='bx bx-chevron-down'></i>
+    <i class='bx bxs-chevron-down display-ingredients-btn'></i>
     <%= text_field_tag 'search[title]', 
         params.dig(:search, :title), 
         class:"search-input",
@@ -8,6 +8,21 @@
     %>
     <%= submit_tag "Search", class:"search-btn" %>
   </div>
+
+  <section class="ingredients-search-wrapper">
+    <h4>Your Ingredients:</h4>
+    <div class="ingredients-search-content">
+      <button type="button" class="check-all-btn">Select All Ingredients</button>
+      <div class="ingredients-list">
+        <% @ingredients.each do |item| %>
+          <div class="ingredient-item">
+              <%= label_tag "search[ingredients][#{item["name"]}]", item["name"].capitalize, class:"ingredient-label" %>
+              <%= check_box_tag "search[ingredients][#{item["name"]}]", '1', params.dig(:search, :ingredients, item["name"]) == '1', class:"ingredient-checkbox" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
 
   <section class="search-sub-section">
     <div>

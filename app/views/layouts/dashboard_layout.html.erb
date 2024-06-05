@@ -11,12 +11,15 @@
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag 'search-form', 'data-turbo-track': 'reload', defer: true %>
     <%= javascript_include_tag 'recipe-show-modal', 'data-turbo-track': 'reload', defer: true %>
+    <%= javascript_include_tag 'nav-bar', 'data-turbo-track': 'reload', defer: true %>
   </head>
 
   <body class="dashboard-body">
     <section class="nav-bar">
         <div>
-            <h1 class="nav-header">What's Cookin</h1>
+            <h1 class="nav-header">
+              <i class='bx bxs-bowl-hot nav-header-logo'></i><span class="nav-item-text">What's Cookin</span>
+            </h1>
 
             <div class="nav-item-wrapper">
                 <%= link_to(dashboard_index_path, class: "nav-item") do %>
@@ -40,10 +43,24 @@
                 <% end %>
             </div>
         </div>
+            
+      <%# <div id="toggle-width-btn" class="nav-item">
+        <i class='bx bx-expand-horizontal'></i><span class="nav-item-text">Minimize</span>
+      </div>
+      
+      <div class="account-btn">
+        <i class='bx bxs-user-circle'></i><span class="nav-item-text">Account</div>
+      </div> %>
 
-      <%= button_to(destroy_user_session_path, method: :delete, class: "logout-btn") do %>
-          <i class='bx bx-power-off'></i><span>Logout</span>
-      <% end %>
+      <div class="nav-footer">
+        <button id="toggle-width-btn" class="resize-btn">
+          <i class='bx bx-expand-horizontal'></i><span class="nav-item-text">Minimize</span>
+        </button>
+
+        <%= button_to(destroy_user_session_path, method: :delete, class: "logout-btn") do %>
+            <i class='bx bx-power-off'></i><span class="nav-item-text">Logout</span>
+        <% end %>
+      </div>
     </section>
 
     <main class="content-wrapper">
