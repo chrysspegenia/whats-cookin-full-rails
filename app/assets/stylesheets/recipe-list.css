@@ -63,3 +63,13 @@
   margin: 3px 0 0 0;
   font-size: 14px;
 }
+
+.button {
+  background: var(--secondary-700);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}

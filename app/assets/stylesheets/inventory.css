@@ -1,0 +1,96 @@
+.inv__container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  height: auto;
+  max-height: 35vh;
+  overflow-y: scroll;
+  margin-bottom: 6px;
+}
+
+.inv__ingredient {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 8px;
+
+}
+
+.inv__ingredient:last-child {
+  border-bottom: none;
+}
+
+.inv__ingredient:nth-child(odd) {
+  background-color: var(--neutral-300);
+}
+
+.inv__ingredient .inv__ingredient-labels {
+  display: flex;
+  flex-direction: column;
+}
+
+  .inv__ingredient-labels  .inv__ingredient-name {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  .inv__ingredient-labels  .inv__ingredient-quantity {
+    margin: 0;
+    font-size: 12px;
+  }
+
+.inv__ingredient .inv__ingredient-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.inv__ingredient button {
+  background: var(--secondary-700);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.inv_controls {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  align-self: flex-end;
+  width: 100%;
+}
+
+.inv_controls > form {
+  background-color: var(--neutral-300);
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.inv_controls input[type="text"], .inv_controls input[type="number"]{
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+}
+
+.inv_controls input[type="submit"] {
+  background: var(--secondary-700);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.inv__container button:hover, .inv_controls input[type="submit"]:hover {
+  background: var(--secondary-900);
+}

@@ -1,0 +1,85 @@
+
+.field {
+  display: grid;
+  grid-template-columns: 0.15fr 1fr;
+  width: 100%;
+}
+
+.create-recipe__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  background-color: var(--secondary-700);
+  padding: 2em;
+  border-radius: 16px;
+}
+
+.field label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.5em;
+  font-size: 16px;
+  color: var(--neutral-100);
+}
+
+.field input[type="text"],
+.field input[type="number"],
+.field input[type="select"],
+.field input[type="textarea"]{
+  padding: 0.5em;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: var(--neutral-100);
+}
+
+.textarea-field textarea {
+  padding: 0.5em;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: var(--neutral-100);
+}
+
+
+/* Style the select dropdown */
+.select-field select {
+  width: 100%; /* Set the width to fill its container */
+  padding: 10px; /* Add padding for better spacing */
+  border-radius: 5px; /* Add rounded corners */
+  background-color: var(--neutral-100);; /* Set background color */
+  font-size: 16px; /* Set font size */
+  color: var( --neutral-900); /* Set text color */
+}
+
+/* Style the select dropdown arrow */
+.select-field select::-ms-expand {
+  display: none; /* Remove the default arrow on Internet Explorer */
+}
+
+
+.select-field option {
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.select-field option:hover {
+  background-color: var(--secondary-500); 
+}
+
+.select-field option::selection {
+  background-color: var(--secondary-500);
+}
+
+/* Style the submit button */
+
+.actions input[type="submit"] {
+  background: var(--neutral-100);
+  color: var(--secondary-700);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}

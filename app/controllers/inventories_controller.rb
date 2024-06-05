@@ -2,6 +2,8 @@ class InventoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_inventory, only: [:show, :edit, :update, :destroy]
 
+  layout "dashboard_layout"
+
   def myinventory
     @inventory = current_user.inventory
     @userdetails = current_user

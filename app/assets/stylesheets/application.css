@@ -16,6 +16,7 @@
 
 :root {
   --neutral-100: #f2f2f2;
+  --neutral-300: #D1D9DE;
   --neutral-500: #bad1de;
   --neutral-900: #21333d;
   --primary-100: #b1fbf5;
@@ -30,7 +31,32 @@
   --secondary-300: #ffbc99;
   --secondary-700: #ff7731;
   --secondary-500: #ff9a66;
+  --secondary-900: #993E0F;
   --background: #d1d9de;
+
+  --primary-font: "Rubik", sans-serif;
+
+
+}
+
+:root * {
+  font-family: var(--primary-font);
+
+  transition: all 0.2s ease-in-out;
+}
+
+.primary-font {
+  font-family: var(--primary-font);
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.secondary-font {
+  font-family: "Poppins", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
 }
 
 .application-body {
