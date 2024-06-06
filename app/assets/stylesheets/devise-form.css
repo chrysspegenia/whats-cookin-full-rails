@@ -1,3 +1,4 @@
+.register-page,
 .login-page {
   display: flex;
   flex-wrap: wrap;
@@ -193,4 +194,35 @@
   align-items: center;
   justify-content: center;
   height: 98vh;
+}
+
+.sign-up-message-container {
+  width: 60%;
+  text-align: center;
+  position: relative;
+}
+
+.sign-up-message-container .logo-img {
+  width: 33%;
+  aspect-ratio: 1/1;
+  position: relative;
+  left: -2.5em;
+  z-index: -1;
+}
+
+.sign-up-message-container .message-wrapper {
+  margin-top: -6em;
+}
+
+.sign-up-message-container h1 {
+  font-size: 3rem;
+}
+
+.sign-up-message-container h1 span {
+  text-decoration: underline;
+  color: var(--secondary-700);
+}
+
+.sign-up-message-container p {
+  font-size: 2rem;
 }
