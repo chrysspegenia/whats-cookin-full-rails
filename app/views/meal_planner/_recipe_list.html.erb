@@ -1,0 +1,5 @@
+<div class="recipe-list" data-controller="drag-and-drop">
+  <% recipe_options.each do |title, id| %>
+    <div id="draggableItem_<%= id %>" draggable="true" data-recipe-id="<%= id %>"><%= title %></div>
+  <% end %>
+</div>
