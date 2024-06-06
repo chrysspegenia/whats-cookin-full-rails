@@ -1,5 +1,9 @@
 <div class="recipe-list" data-controller="drag-and-drop">
-  <% recipe_options.each do |title, id| %>
-    <div id="draggableItem_<%= id %>" draggable="true" data-recipe-id="<%= id %>"><%= title %></div>
+  <% recipe_options.each do |recipe| %>
+    <li class="recipe-list-item">
+      <div id="draggableItem_<%= recipe[:id] %>" draggable="true" data-recipe-id="<%= recipe[:id] %>" style="background-image: url('<%= recipe[:image_url] %>');">
+        <span><%= recipe[:title] %></span>
+      </div>
+    </li>
   <% end %>
 </div>
