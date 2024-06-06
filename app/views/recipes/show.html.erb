@@ -8,19 +8,15 @@
 
 <section class="recipe-header">
   <h1><%= @recipe[:title] %></h1>
-  <% if @recipe[:isUserCreated] == true %>
-    <div class="recipe-tag"><i class='bx bxs-pen'></i></div>
-  <% else %>
-    <div class="recipe-tag"><i class='bx bxs-star'></i></div>
-  <% end %>
+  <div class="recipe-actions">
+    <% if @recipe[:isUserCreated] == true %>
+      <div class="recipe-tag"><i class='bx bxs-pen'></i></div>
+    <% else %>
+      <div class="recipe-tag"><i class='bx bxs-star'></i></div>
+    <% end %>
+    <div class="recipe-tag"> <%= button_to recipe_path(@recipe.title), method: :delete, data: { confirm: 'Are you sure?' }, class: 'tooltip' do %><i class='bx bx-trash'></i><% end %></div>
+  </div>
 </section>
-
-save ingredients 
-
-<% if user_signed_in? %>
-  <%= button_to "Save Ingredients", save_ingredient_path(title: @recipe.title), method: :post %>
-
-<% end %>
 
 <section class="recipe-second-section">
   <img src="<%= @recipe.image_url %>" alt="image of <%=@recipe[:title]%>" class="recipe-img">

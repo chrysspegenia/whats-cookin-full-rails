@@ -58,6 +58,7 @@ class EdamamController < ApplicationController
       )
   
       if @new_recipe.save
+        save_ingredient(@recipe)
         flash[:notice] = 'Recipe added to your collection.'
         redirect_to edamam_path(@recipe[:id])
       else
@@ -98,6 +99,51 @@ class EdamamController < ApplicationController
 
     def client
       Edamam::V1::Client.new
+    end
+
+    def save_ingredient(saved_recipe)
+      ingredients_array = saved_recipe[:ingredients]
+    
+      # Set the inventory
+      set_inventory
+    
+      if @inventory.present?
+        ingredients_array.each do |ingredient_params|
+          ingredient_params = ActionController::Parameters.new(name: ingredient_params["food"], quantity: ingredient_params["quantity"])
+          ingredient_params.permit!  # Permit all parameters
+          @ingredient = @inventory.ingredients.build(ingredient_params)
+          @ingredient.quantity = 1 if @ingredient.quantity.nil? || @ingredient.quantity == 0
+          @ingredient.user = current_user
+  
+          # check if ingredient already exists in inventory
+          existing_ingredient = @inventory.ingredients.find_by(name: @ingredient.name)
+          if existing_ingredient
+            existing_ingredient.quantity += @ingredient.quantity
+            if existing_ingredient.save
+              flash[:notice] ||= []
+              flash[:notice] << "#{ingredient_params["food"]} saved successfully."
+            else
+              flash[:alert] ||= []
+              flash[:alert] << "#{ingredient_params["food"]} failed to save."
+            end
+          else
+            @ingredient.is_grocery_item = true
+            if @ingredient.save
+              flash[:notice] ||= []
+              flash[:notice] << "#{ingredient_params["food"]} saved successfully."
+            else
+              flash[:alert] ||= []
+              flash[:alert] << "#{ingredient_params["food"]} failed to save."
+            end
+          end
+        end
+      else
+        flash[:alert] = "Inventory not found."
+      end
+    end
+
+    def set_inventory
+      @inventory = current_user.inventory
     end
   end
   

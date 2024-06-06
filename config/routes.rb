@@ -31,13 +31,14 @@ Rails.application.routes.draw do
   get 'myinventory', to: 'inventories#myinventory'
   
   get 'myrecipes', to: 'recipes#user_recipes'
-  resources :recipes, only: [:index, :show, :new, :create]
+  resources :recipes, only: [:index, :show, :new, :create, :destroy], param: :title
 
   resources :inventories do
     resources :ingredients do 
       member do
         patch :decrease
         patch :increase
+        patch :move
       end
     end
   end

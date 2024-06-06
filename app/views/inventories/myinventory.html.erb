@@ -23,7 +23,7 @@
     <% if @inventory.ingredients.empty? %>
       <h3>No ingredients found</h3>
     <% else %>
-      <% @inventory.ingredients.each do |ingredient| %>
+      <% @inventory.ingredients.where(is_grocery_item: false).each do |ingredient| %>
         <% if ingredient.persisted? %> <!-- Ensure ingredient is saved in the database -->
           <li class="inv__ingredient">
             <div class="inv__ingredient-labels">
@@ -31,9 +31,80 @@
               <p class='inv__ingredient-quantity'> Total Stored | <%= ingredient.quantity %> </p>
             </div>
             <div class='inv__ingredient-actions'>
-              <%= button_to '-1', decrease_inventory_ingredient_path(@inventory, ingredient, amount: 1), method: :patch %>
-              <%= button_to '+1', increase_inventory_ingredient_path(@inventory, ingredient, amount: 1), method: :patch %>
-              <%= button_to 'Remove', [@inventory, ingredient], method: :delete, data: { confirm: 'Are you sure?' } %>
+
+              <%= button_to decrease_inventory_ingredient_path(@inventory, ingredient, amount: 1), method: :patch, title: 'Deduct 1', class: 'btn-with-icon tooltip' do %> <i class='bx bx-minus'></i>
+                <span class="tooltiptext">Deduct 1 to quantity</span>
+              <% end %>
+
+              <%= button_to increase_inventory_ingredient_path(@inventory, ingredient, amount: 1), method: :patch, title: 'Add 1', class: 'btn-with-icon tooltip' do %> <i class='bx bx-plus'></i>
+                <span class="tooltiptext">Add 1 to quantity</span>
+              <% end %>
+
+              <%= button_to move_inventory_ingredient_path(@inventory, ingredient, is_grocery_item: true), method: :patch, title: 'Move to Grocery List', class: 'btn-with-icon tooltip' do %> <i class='bx bxs-down-arrow'></i>
+                <span class="tooltiptext">Move <%= ingredient.name %> to the grocery list</span>
+              <% end %>
+
+              <%= button_to [@inventory, ingredient], method: :delete, data: { confirm: 'Are you sure?' }, title: 'Remove Ingredient', class: 'btn-with-icon tooltip' do %> <i class='bx bx-trash'></i>
+              <% end %>
+
+            </div>
+          </li>
+        <% end %>
+      <% end %>
+    <% end %>   
+  </ul>
+<% else %>
+  <h1>No Inventory Found</h1>
+<% end %>
+
+<% if @inventory %>
+  <h1>My Grocery List</h1>
+  <ul class="inv__container">
+    <li class='inv_controls'>
+      <%= form_with(model: [@inventory, @ingredient], local: true) do |form| %>
+        <% if @ingredient.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
+            <ul>
+              <% @ingredient.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+        <%= form.label :quantity %>
+        <%= form.number_field :quantity %>
+        <%= form.submit 'Add Ingredient' %>
+      <% end %>
+    </li>
+    <% if @inventory.ingredients.empty? %>
+      <h3>No ingredients found</h3>
+    <% else %>
+      <% @inventory.ingredients.where(is_grocery_item: true).each do |ingredient| %>
+        <% if ingredient.persisted? %> <!-- Ensure ingredient is saved in the database -->
+          <li class="inv__ingredient">
+            <div class="inv__ingredient-labels">
+              <h1 class='inv__ingredient-name'> <%= pluralize(ingredient.quantity,ingredient.name) %> </h1>
+              <p class='inv__ingredient-quantity'> Total Stored | <%= ingredient.quantity %> </p>
+            </div>
+            <div class='inv__ingredient-actions'>
+
+              <%= button_to decrease_inventory_ingredient_path(@inventory, ingredient, amount: 1), method: :patch, title: 'Deduct 1', class: 'btn-with-icon tooltip' do %> <i class='bx bx-minus'></i>
+                <span class="tooltiptext">Deduct 1 to quantity</span>
+              <% end %>
+
+              <%= button_to increase_inventory_ingredient_path(@inventory, ingredient, amount: 1), method: :patch, title: 'Add 1', class: 'btn-with-icon tooltip' do %> <i class='bx bx-plus'></i>
+                <span class="tooltiptext">Add 1 to quantity</span>
+              <% end %>
+
+              <%= button_to move_inventory_ingredient_path(@inventory, ingredient, is_grocery_item: false), method: :patch, title: 'Move to Inventory', class: 'btn-with-icon tooltip' do %> <i class='bx bxs-up-arrow'></i>
+                <span class="tooltiptext">Move <%= ingredient.name %> to Inventory </span>
+              <% end %>
+
+              <%= button_to [@inventory, ingredient], method: :delete, data: { confirm: 'Are you sure?' }, title: 'Remove Ingredient', class: 'btn-with-icon tooltip' do %> <i class='bx bx-trash'></i>
+              <% end %>
             </div>
           </li>
         <% end %>
