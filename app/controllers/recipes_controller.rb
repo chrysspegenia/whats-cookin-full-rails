@@ -3,12 +3,6 @@ class RecipesController < ApplicationController
 
   layout "dashboard_layout"
 
-  def recipes
-    @recipes = client.recipes(query: "pork", addRecipeInstructions: true, addRecipeInformation: true, addRecipeNutrition: true)
-  rescue StandardError => e
-    @error = e.message
-  end
-
   def saved_recipes
     @saved_recipes = current_user.recipes.where(isUserCreated: false || nil)
   end
@@ -83,10 +77,6 @@ class RecipesController < ApplicationController
 
   private
 
-  def client
-    Spoonacular::V1::Client.new
-  end
-
   def set_recipes
     @recipes = current_user.recipes
   end
@@ -107,8 +97,6 @@ class RecipesController < ApplicationController
     filtered_params[:isUserCreated] = true
     filtered_params
   end
-
-  private
 
   def set_inventory
     @inventory = current_user.inventory
