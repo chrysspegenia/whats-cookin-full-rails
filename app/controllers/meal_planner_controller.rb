@@ -59,7 +59,11 @@ class MealPlannerController < ApplicationController
   end
 
   def instantiate_calendar(start_date)
-    OpenStruct.new(start_date: start_date)
+    OpenStruct.new( start_date: start_date,
+    url_for_previous_view: meal_planner_index_path(start_date: start_date - 1.week),
+    url_for_today_view: meal_planner_index_path(start_date: Date.today),
+    url_for_next_view: meal_planner_index_path(start_date: start_date + 1.week)
+    )
   end
 
   def week_of_month_label(start_date)
