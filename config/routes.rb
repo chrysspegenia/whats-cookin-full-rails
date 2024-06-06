@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :meal_planner
+  resources :meal_planner, only: [:index, :create, :destroy]
 
   # get "search" => "edamam#search"
   resources :recipes, param: :title
