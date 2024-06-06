@@ -22,6 +22,7 @@
   padding: 0.75em;
   text-align: center;
   border-radius: 10px 10px 0 0;
+  position: relative;
 }
 
 .nav-item-wrapper {
@@ -67,7 +68,6 @@
   font-size: 2rem;
 }
 
-.nav-header-logo.active,
 .nav-item-text {
   opacity: 0;
   max-width: 0;
@@ -76,11 +76,22 @@
   white-space: nowrap;
 }
 
-.nav-header-logo,
 .nav-item-text.active {
-  display: block;
   opacity: 1;
   max-width: 150px;
+}
+
+.nav-header-logo.active {
+  transform: scale(0);
+  opacity: 0;
+}
+
+.nav-header-logo {
+  transition: opacity 0.2s ease, transform 0.5s ease;
+  width: 65px;
+  position: absolute;
+  left: 18%;
+  top: 0;
 }
 
 .nav-footer {

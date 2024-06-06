@@ -18,7 +18,8 @@
     <section class="nav-bar">
         <div>
             <h1 class="nav-header">
-              <i class='bx bxs-bowl-hot nav-header-logo'></i><span class="nav-item-text">What's Cookin</span>
+              <%= image_tag 'whats-cookin-logo.png', alt: "What's Cookin Logo", class:"nav-header-logo"%>
+              <span class="nav-item-text">What's Cookin</span>
             </h1>
 
             <div class="nav-item-wrapper">
@@ -43,14 +44,6 @@
                 <% end %>
             </div>
         </div>
-            
-      <%# <div id="toggle-width-btn" class="nav-item">
-        <i class='bx bx-expand-horizontal'></i><span class="nav-item-text">Minimize</span>
-      </div>
-      
-      <div class="account-btn">
-        <i class='bx bxs-user-circle'></i><span class="nav-item-text">Account</div>
-      </div> %>
 
       <div class="nav-footer">
         <button id="toggle-width-btn" class="resize-btn">
