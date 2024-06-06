@@ -1,7 +1,8 @@
 /* Calendar Container */
 .simple-calendar {
   font-family: Arial, sans-serif;
-
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* Calendar Heading */
@@ -46,10 +47,18 @@ nav a:hover {
   padding: 10px;
   text-align: center;
   border: 1px solid #ccc;
+  word-wrap: break-word;
+  width: 9vw;
 }
 
 .table th {
   background-color: var(--secondary-700);
+  font-size: 20px;
+}
+
+.table-head-date{
+  font-size: 15px;
+  margin: 0;
 }
 
 .table tbody tr:nth-child(even) {
@@ -69,9 +78,12 @@ nav a:hover {
 }
 
 .drop-area{
-  height: 100px;
-  width: 200px;
+  height: 120px;
+  width: 100% ;
   background-color:transparent;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
 }
 
 .delete-area{
@@ -88,6 +100,8 @@ nav a:hover {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .recipe-list-item{
@@ -123,6 +137,9 @@ nav a:hover {
 
 .meal-plan-item{
   cursor: pointer;
+  width: 100%;
+  word-wrap: break-word;
+  font-size:smaller;
 }
 
 .highlight-drop-area {
