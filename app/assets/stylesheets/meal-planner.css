@@ -13,6 +13,11 @@
   font-size: 20px;
 }
 
+.calendar-nav-link a:hover{
+ background-color: var(--secondary-500) ;
+ color: white;
+}
+
 .calendar-title h3{
   font-size: 40px;
   font-weight: 700;

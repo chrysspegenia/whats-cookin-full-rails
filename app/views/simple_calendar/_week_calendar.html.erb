@@ -4,7 +4,7 @@
       <span class="calendar-title">
         <h3><%= week_of_month_label(@start_date) %></h3>
       </span>
-      <nav>
+      <nav class = "calendar-nav-link">
         <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view, remote: true %>
         <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view, remote: true %>
         <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, remote: true %>

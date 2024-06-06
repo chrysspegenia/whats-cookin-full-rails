@@ -81,4 +81,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_06_123535) do
   add_foreign_key "meal_plans", "recipes"
   add_foreign_key "meal_plans", "users"
   add_foreign_key "recipes", "users"
-end
+end 
