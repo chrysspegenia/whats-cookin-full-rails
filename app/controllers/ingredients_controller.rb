@@ -1,7 +1,7 @@
 class IngredientsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_inventory
-  before_action :set_ingredient, only: [:edit, :update, :destroy, :decrease, :increase]
+  before_action :set_ingredient, only: [:edit, :update, :destroy, :decrease, :increase, :move]
 
   def create
     @ingredient = @inventory.ingredients.build(ingredient_params)
@@ -50,6 +50,24 @@ class IngredientsController < ApplicationController
     @ingredient.save
     notice = 'Ingredient quantity was successfully increased.'
     redirect_to myinventory_path, notice: notice
+  end
+
+  def move_to_inventory
+    @ingredient.is_grocery_item = params[:is_grocery_item]
+    @ingredient.save
+    redirect_to myinventory_path, notice: 'Ingredient was successfully moved to inventory.'
+  end
+
+  def move
+    if @ingredient.is_grocery_item == 'true'
+      @ingredient.is_grocery_item = params[:is_grocery_item]
+      @ingredient.save
+      redirect_to myinventory_path, notice: 'Ingredient was successfully moved to inventory.'
+    else
+      @ingredient.is_grocery_item = params[:is_grocery_item]
+      @ingredient.save
+      redirect_to myinventory_path, notice: 'Ingredient was successfully moved to grocery list.'
+    end
   end
 
   private

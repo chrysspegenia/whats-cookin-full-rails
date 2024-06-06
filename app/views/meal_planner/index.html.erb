@@ -1,3 +1,6 @@
-<%= week_calendar(number_of_weeks: 1) do |date| %>
-  <%= date %>
+<% if current_user.recipes.any? %>
+  <%= week_calendar(number_of_weeks: 1) do |date| %>
+    <%= date %>
+  <% end %>
+        <%= render partial: "recipe_list" %>
 <% end %>

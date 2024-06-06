@@ -12,6 +12,8 @@ class User < ApplicationRecord
 
   private
 
+  has_many :meal_plans, dependent: :destroy
+
   def create_default_inventory
     create_inventory!
   end

@@ -13,9 +13,36 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-evenly;
   gap: 1em;
   padding: 1em;
+}
+
+.recipe-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.recipe-actions .recipe-tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: var(--secondary-700);
+  color: white;
+  cursor: pointer;
+}
+
+.recipe-actions .recipe-tag button {
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;
+  font-size: 24px;
+  margin-top: 6px;
 }
 
 .recipe-item {

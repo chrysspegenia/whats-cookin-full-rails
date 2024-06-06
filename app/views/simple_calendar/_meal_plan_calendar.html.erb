@@ -13,8 +13,7 @@
 
     <div class="delete-area" data-controller="drag-and-drop" data-action="dragover->drag-and-drop#handleDragOver drop->drag-and-drop#handleDrop">
       <h2 class ="trash-label">
-        <i class='bx bx-trash'>
-        </i>
+        <i class='bx bx-trash'></i>
         Drop here to delete
       <h2>
     </div>
@@ -37,7 +36,7 @@
               <% %w[breakfast lunch dinner].each do |meal_type| %>
                 <div class="drop-area" data-date="<%= day %>" data-meal-type="<%= meal_type %>" id="<%= "#{meal_type}_#{day}" %>">
                   <%= meal_type.capitalize %>
-                  <% @meal_plans.select { |mp| mp.date == day && mp.meal_type == meal_type }.each do |meal_plan| %>
+                  <% if (meal_plan = @meal_plans.find { |mp| mp.date == day && mp.meal_type == meal_type }) %> 
                     <div id="draggableCalendarItem_<%= meal_plan.id %>" class="meal-plan-item" draggable="true" data-recipe-id="<%= meal_plan.recipe.id %>" data-meal-plan-id="<%= meal_plan.id %>">
                       <%= meal_plan.recipe.title %>
                     </div>

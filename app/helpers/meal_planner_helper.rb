@@ -1,16 +1,18 @@
 module MealPlannerHelper
-    def meal_select_options(is_today)
-      content_tag(:div) do
-        3.times.map do
-          select_tag("", options_for_select(recipe_options, selected: ""), include_blank: true, class: is_today ? 'dropdown' : 'colored-dropdown')
-        end.join.html_safe
-      end
-    end
-  
     private
   
     def recipe_options
-      @recipes.map { |recipe| [recipe.title, recipe.id] }
+      current_user.recipes.map do |recipe|
+        {
+          id: recipe.id,
+          title: recipe.title,
+          image_url: recipe.image_url,
+          meal_type: recipe.meal_type,
+          cuisine_type: recipe.cuisine_type
+        }
+      end
     end
+    
+    
   end
   

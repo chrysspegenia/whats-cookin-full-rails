@@ -71,10 +71,13 @@ class RecipesController < ApplicationController
       flash[:alert] = "Inventory not found."
     end
   end
-  
-  
-  
 
+  def destroy
+    @recipe = Recipe.find_by(title: params[:title])
+    @recipe.destroy
+    redirect_to myrecipes_path, notice: "Recipe was successfully deleted."
+  end
+  
   private
 
   def set_recipes
