@@ -23,8 +23,8 @@
         <tr>
           <% date_range(@start_date).slice(0, 7).each do |day| %>
             <th class="<%= day == Date.today ? 'today' : '' %>">
-              <%= day.strftime("%B %d %Y") %> <br>
-              <%= t('date.abbr_day_names')[day.wday] %>
+              <%= t('date.abbr_day_names')[day.wday] %><br>
+              <p class = "table-head-date"><%= day.strftime("%B %d %Y") %></p> 
             </th>
           <% end %>
         </tr>
