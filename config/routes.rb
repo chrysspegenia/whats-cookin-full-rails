@@ -12,8 +12,6 @@ Rails.application.routes.draw do
 
   root to: 'redirect#index'
 
-  resources :dashboard
-
   resources :edamam, only: [:index, :show] do
     collection do
       post :save_recipe
@@ -26,7 +24,6 @@ Rails.application.routes.draw do
   resources :recipes, param: :title
   post 'recipes/:title/save_ingredient', to: 'recipes#save_ingredient', as: 'save_ingredient'
 
-  resources :spoonacular, only: [:index]
   # resources :inventories, only: [:index]
   get 'myinventory', to: 'inventories#myinventory'
   
