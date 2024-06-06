@@ -1,6 +1,7 @@
 /* Calendar Container */
 .simple-calendar {
   font-family: Arial, sans-serif;
+
 }
 
 /* Calendar Heading */
@@ -65,30 +66,25 @@ nav a:hover {
 
 }
 
-.dropdown{
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    appearance: none;
+.drop-area{
+  height: 100px;
+  width: 200px;
+  background-color:transparent;
 }
 
-.dropdown:hover{
-    outline: 1px solid white;
+.delete-area{
+  height: 100px;
+  width: 200px;
+  background-color:red;
 }
 
-.today select{
-    color: white;
+.recipe-list{
+  outline: 1px solid var(--secondary-500);
+  cursor: pointer;
+  font-size: large;
+  font-weight: 700;
 }
 
-.today select option { color: rgb(0, 0, 0); }
-
-.colored-dropdown{
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    appearance: none;
-}
-
-.colored-dropdown:hover{
-    outline: 1px solid var(--secondary-500);
+.meal-plan-item{
+  cursor: pointer;
 }
