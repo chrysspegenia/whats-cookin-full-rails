@@ -1,18 +1,49 @@
 .login-page {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-around;
   height: 98vh;
   padding: 0 5em;
 }
 
 .logo-section {
-  width: 75%;
-  border: 2px solid green;
+  width: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.logo-img {
+  width: 40em;
+}
+
+.logo-section h1 {
+  font-size: 7.5rem;
+  margin-top: -1.4em;
+  color: var(--secondary-700);
+  white-space: nowrap;
+  letter-spacing: 0.6rem;
+  font-family: "Koulen", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  position: relative;
+  left: 0.05em;
+}
+
+.logo-motto {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 2rem;
+  margin-top: -9em;
+  font-style: italic;
 }
 
 .devise-form-wrapper {
   background: var(--neutral-100);
   width: 25%;
+  min-width: 380px;
   padding-bottom: 1em;
   border-radius: 10px;
   overflow: hidden;
