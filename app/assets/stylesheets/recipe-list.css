@@ -17,6 +17,10 @@
   padding: 1em;
 }
 
+.recipe-search-wrapper .recipe-list-wrapper {
+  justify-content: space-around;
+}
+
 .recipe-actions {
   display: flex;
   gap: 8px;
