@@ -33,3 +33,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# schema
+/db/schema.rb
+db/schema.rb
