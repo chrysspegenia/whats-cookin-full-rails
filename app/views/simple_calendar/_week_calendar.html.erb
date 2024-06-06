@@ -1,59 +1,49 @@
 <div class="simple-calendar">
-  <div class="calendar-heading">
-    <span class="calendar-title">
-      <h3>Today: 
-      <%= calendar.start_date.strftime("%B %d, %Y") %>
-      </h3>
+  <%= turbo_frame_tag "meal_planner_frame" do %>
+    <div class="calendar-heading">
+      <span class="calendar-title">
+        <h3><%= week_of_month_label(@start_date) %></h3>
+      </span>
+      <nav>
+        <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view, remote: true %>
+        <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view, remote: true %>
+        <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, remote: true %>
+      </nav>
+    </div>
 
-    </span>
+    <div class="delete-area" data-controller="drag-and-drop" data-action="dragover->drag-and-drop#handleDragOver drop->drag-and-drop#handleDrop">
+      Drop here to delete
+    </div>
 
-    <nav>
-      <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
-      <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view %>
-      <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
-    </nav>
-  </div>
-
-  <table class="table table-striped">
-  <thead>
-    <tr>
-      <% date_range.slice(0, 7).each do |day| %>
-        <th class="<%= day == Date.today ? 'today' : '' %>">
-          <%= t('date.abbr_day_names')[day.wday] %> - <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
-        </th>
-      <% end %>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr class="day">
-      <% date_range.slice(0, 7).each do |day| %>
-        <%= content_tag :td, class: (day == Date.today ? 'today' : '') do %>
-          <div>
-            Breakfast
-            <%= meal_select_options(day == Date.today) %>
-          </div>
-          <div>
-            Lunch
-            <%= meal_select_options(day == Date.today) %>
-          </div>
-          <div>
-            Dinner
-            <%= meal_select_options(day == Date.today) %>
-          </div>
-
-          <% calendar.sorted_events_for(day).each do |event| %>
-            <div><%= event.title %></div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <% date_range(@start_date).slice(0, 7).each do |day| %>
+            <th class="<%= day == Date.today ? 'today' : '' %>">
+              <%= day.strftime("%B %d %Y") %> <br>
+              <%= t('date.abbr_day_names')[day.wday] %>
+            </th>
           <% end %>
-        <% end %>
-      <% end %>
-    </tr>
-  </tbody>
-</table>
-
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="day" data-controller="drag-and-drop">
+          <% date_range(@start_date).slice(0, 7).each do |day| %>
+            <%= content_tag :td, class: (day == Date.today ? 'today' : '') do %>
+              <% %w[breakfast lunch dinner].each do |meal_type| %>
+                <div class="drop-area" data-date="<%= day %>" data-meal-type="<%= meal_type %>" id="<%= "#{meal_type}_#{day}" %>">
+                  <%= meal_type.capitalize %>
+                  <% @meal_plans.select { |mp| mp.date == day && mp.meal_type == meal_type }.each do |meal_plan| %>
+                    <div id="draggableCalendarItem_<%= meal_plan.id %>" class="meal-plan-item" draggable="true" data-recipe-id="<%= meal_plan.recipe.id %>" data-meal-plan-id="<%= meal_plan.id %>">
+                      <%= meal_plan.recipe.title %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
 </div>
-
-<div>
-    <%= submit_tag "Save Meal Plan", class:"search-btn" %>
-</div>
-
