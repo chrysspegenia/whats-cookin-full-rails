@@ -31,7 +31,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="day" data-controller="drag-and-drop">
+       <tr class="day" data-controller="drag-and-drop">
           <% date_range(@start_date).slice(0, 7).each do |day| %>
             <%= content_tag :td, class: (day == Date.today ? 'today' : '') do %>
               <% %w[breakfast lunch dinner].each do |meal_type| %>
