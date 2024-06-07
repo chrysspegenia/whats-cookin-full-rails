@@ -96,6 +96,10 @@
   gap: 5em;
 }
 
+.instructions-section {
+  max-width: 50%;
+}
+
 .ingredients-section {
   background: var(--background);
   padding: 1em;

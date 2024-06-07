@@ -13,12 +13,12 @@
   font-size: 20px;
 }
 
-.calendar-nav-link a:hover{
- background-color: var(--secondary-500) ;
- color: white;
+.calendar-nav-link a:hover {
+  background-color: var(--secondary-500);
+  color: white;
 }
 
-.calendar-title h3{
+.calendar-title h3 {
   font-size: 40px;
   font-weight: 700;
   margin: 0;
@@ -61,7 +61,7 @@ nav a:hover {
   font-size: 20px;
 }
 
-.table-head-date{
+.table-head-date {
   font-size: 15px;
   margin: 0;
 }
@@ -70,35 +70,33 @@ nav a:hover {
   background-color: #f9f9f9;
 }
 
-.day{
+.day {
   height: 200px;
   background-color: white;
 }
 
-
 .today {
-  background-color:var(--secondary-500);
+  background-color: var(--secondary-500);
   color: white;
-
 }
 
-.drop-area{
+.drop-area {
   height: 120px;
-  width: 100% ;
-  background-color:transparent;
+  width: 100%;
+  background-color: transparent;
   justify-content: center;
   align-items: center;
   font-weight: 700;
 }
 
-.delete-area{
+.delete-area {
   height: 52px;
   width: 100%;
-  background-color:transparent;
+  background-color: transparent;
   opacity: 0;
 }
 
-.recipe-list{
+.recipe-list {
   cursor: pointer;
   font-size: large;
   font-weight: 700;
@@ -109,7 +107,7 @@ nav a:hover {
   align-items: center;
 }
 
-.recipe-list-item{
+.recipe-list-item {
   margin: 20px;
   list-style-type: none;
   border-radius: 10px;
@@ -129,35 +127,36 @@ nav a:hover {
   align-items: center;
   justify-content: center;
   color: white;
-  text-shadow: 1px 1px 2px black; 
+  text-shadow: 1px 1px 2px black;
 }
 
-.recipe-list-item:hover{
+.recipe-list-item:hover {
   scale: 1.1;
 }
 
-.recipe-list img{
+.recipe-list img {
   width: fit-content;
 }
 
-.meal-plan-item{
+.meal-plan-item {
   cursor: pointer;
   width: 100%;
   word-wrap: break-word;
-  font-size:smaller;
+  font-size: smaller;
 }
 
 .highlight-drop-area {
-  background-color: var(--secondary-100); 
+  background-color: var(--secondary-100);
 }
 
 .highlight-delete-area {
-  background-color: rgba(0,0,0,0.5); 
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   opacity: 1;
 }
 
-.trash-label, .bx{
+.trash-label,
+.bx {
   display: flex;
   font-size: 40px;
   justify-content: center;
