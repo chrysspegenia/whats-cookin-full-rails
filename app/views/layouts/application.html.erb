@@ -16,9 +16,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Koulen&display=swap" rel="stylesheet">
+    <%= javascript_include_tag 'recipe-show-modal', 'data-turbo-track': 'reload', defer: true %>
   </head>
 
   <body class="application-body">
     <%= yield %>
   </body>
+
+  <% if flash[:notice] %>
+    <div id="notice-modal" class="modal notice-modal">
+      <i class='bx bx-check-circle' ></i>
+      <span><%= flash[:notice] %></span>
+      <i class='bx bx-x close' onclick="closeModal('notice-modal')"></i>
+    </div>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <div id="alert-modal" class="modal alert-modal">
+      <i class='bx bx-bell' ></i>
+      <span><%= flash[:alert] %></span>
+      <i class='bx bx-x close' onclick="closeModal('alert-modal')"></i>
+    </div>
+  <% end %>
+
 </html>
