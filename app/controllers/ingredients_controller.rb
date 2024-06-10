@@ -62,11 +62,11 @@ class IngredientsController < ApplicationController
     if @ingredient.is_grocery_item == 'true'
       @ingredient.is_grocery_item = params[:is_grocery_item]
       @ingredient.save
-      redirect_to myinventory_path, notice: 'Ingredient was successfully moved to inventory.'
+      redirect_to myinventory_path, notice: 'Ingredient was successfully moved'
     else
       @ingredient.is_grocery_item = params[:is_grocery_item]
       @ingredient.save
-      redirect_to myinventory_path, notice: 'Ingredient was successfully moved to grocery list.'
+      redirect_to myinventory_path, notice: 'Ingredient was successfully moved'
     end
   end
 

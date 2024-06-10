@@ -1,3 +1,19 @@
+<% if flash[:notice] %>
+  <div id="notice-modal" class="modal notice-modal">
+    <i class='bx bx-check-circle' ></i>
+    <span><%= flash[:notice] %></span>
+    <i class='bx bx-x close' onclick="closeModal('notice-modal')"></i>
+  </div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div id="alert-modal" class="modal alert-modal">
+    <i class='bx bx-bell' ></i>
+    <span><%= flash[:alert] %></span>
+    <i class='bx bx-x close' onclick="closeModal('alert-modal')"></i>
+  </div>
+<% end %>
+
 <% if @inventory %>
   <h1>My Inventory</h1>
   <ul class="inv__container">
@@ -27,7 +43,7 @@
         <% if ingredient.persisted? %> <!-- Ensure ingredient is saved in the database -->
           <li class="inv__ingredient">
             <div class="inv__ingredient-labels">
-              <h1 class='inv__ingredient-name'> <%= pluralize(ingredient.quantity,ingredient.name) %> </h1>
+              <h1 class='inv__ingredient-name'> <%= pluralize(ingredient.quantity, ingredient.measure) %> of <%= ingredient.name %> </h1>
               <p class='inv__ingredient-quantity'> Total Stored | <%= ingredient.quantity %> </p>
             </div>
             <div class='inv__ingredient-actions'>
@@ -58,7 +74,7 @@
 <% end %>
 
 <% if @inventory %>
-  <h1>My Grocery List</h1>
+  <h1>Ingredients Needed</h1>
   <ul class="inv__container">
     <li class='inv_controls'>
       <%= form_with(model: [@inventory, @ingredient], local: true) do |form| %>
@@ -86,7 +102,7 @@
         <% if ingredient.persisted? %> <!-- Ensure ingredient is saved in the database -->
           <li class="inv__ingredient">
             <div class="inv__ingredient-labels">
-              <h1 class='inv__ingredient-name'> <%= pluralize(ingredient.quantity,ingredient.name) %> </h1>
+              <h1 class='inv__ingredient-name'> <%= pluralize(ingredient.quantity, ingredient.measure) %> of <%= ingredient.name %></h1>
               <p class='inv__ingredient-quantity'> Total Stored | <%= ingredient.quantity %> </p>
             </div>
             <div class='inv__ingredient-actions'>

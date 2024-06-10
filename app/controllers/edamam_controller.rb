@@ -109,7 +109,7 @@ class EdamamController < ApplicationController
     
       if @inventory.present?
         ingredients_array.each do |ingredient_params|
-          ingredient_params = ActionController::Parameters.new(name: ingredient_params["food"], quantity: ingredient_params["quantity"])
+          ingredient_params = ActionController::Parameters.new(name: ingredient_params["food"], quantity: ingredient_params["quantity"], measure: if ingredient_params["measure"] == "<unit>" then "piece" else ingredient_params["measure"] end)
           ingredient_params.permit!  # Permit all parameters
           @ingredient = @inventory.ingredients.build(ingredient_params)
           @ingredient.quantity = 1 if @ingredient.quantity.nil? || @ingredient.quantity == 0
