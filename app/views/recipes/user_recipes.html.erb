@@ -1,5 +1,21 @@
   <%= link_to "Create a new recipe", new_recipe_path, class: "button" %>
 
+<% if flash[:notice] %>
+  <div id="notice-modal" class="modal notice-modal">
+    <i class='bx bx-check-circle' ></i>
+    <span><%= flash[:notice] %></span>
+    <i class='bx bx-x close' onclick="closeModal('notice-modal')"></i>
+  </div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div id="alert-modal" class="modal alert-modal">
+    <i class='bx bx-bell' ></i>
+    <span><%= flash[:alert] %></span>
+    <i class='bx bx-x close' onclick="closeModal('alert-modal')"></i>
+  </div>
+<% end %>
+
 <section>
   <h1>Saved Recipes</h1>
   <ul class="recipe-list-wrapper">
@@ -21,6 +37,8 @@
           <% recipe[:cuisine_type].each do |type| %>
             <p><%= type %></p>
           <% end %>
+            <p><i class='bx bxs-user'> </i><%= recipe.serving %></p>
+            <p><i class='bx bx-hash'> </i><%= recipe.calories.round(0) %></p>
         </span>
       </div>
       <% end %>
@@ -46,6 +64,7 @@
             <p><%= type %></p>
           <% end %>
             <p><i class='bx bxs-user'> </i><%= recipe.serving %></p>
+            <p><i class='bx bx-hash'> </i><%= recipe.calories.round(0) %></p>
         </span>
       </div>
       <% end %>
