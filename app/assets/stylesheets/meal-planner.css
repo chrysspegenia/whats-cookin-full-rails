@@ -156,7 +156,7 @@ nav a:hover {
 }
 
 .trash-label,
-.bx {
+.trash-label .bx {
   display: flex;
   font-size: 40px;
   justify-content: center;
