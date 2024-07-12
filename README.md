@@ -1,24 +1,31 @@
-# README
+# Whats Cookin
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Whats Cookin is your platform for discovering, saving and crafting your favorite recipes.
+Whether you're seaching for new culinary inspirations or creating your own dishes, What's Cookin
+provides the tools and community to elevate your cooking experience.
 
-Things you may want to cover:
+## Key Features
 
-* Ruby version
+- User authentication
 
-* System dependencies
+  - Secure login and registration to protect user information and personalize their experience.
 
-* Configuration
+- Inventory
 
-* Database creation
+  - Allows the user to create a list of available ingredients they have on hand, making it easier to find recipes that use those ingredients.
 
-* Database initialization
+- Recipe Search
 
-* How to run the test suite
+  - Allows users to find recipes based on names, ingredients, available inventory items, cuisine type, and dietary restrictions such as allergies.
 
-* Services (job queues, cache servers, search engines, etc.)
+- Create Recipe
 
-* Deployment instructions
+  - Allows the user to create, customize and save their own creations.
 
-* ...
+- Save Recipes
+
+  - Users can bookmark recipes that they like and save them in a collection for quick and convenient access.
+
+- Meal Planner
+
+  - A calendar setup to plan meals in advance, helping users organize their cooking schedule and ensure a balanced diet.
