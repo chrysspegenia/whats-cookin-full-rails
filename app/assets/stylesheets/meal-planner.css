@@ -105,6 +105,8 @@ nav a:hover {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  overflow-y: auto;
+  max-height: 20%;
 }
 
 .recipe-list-item {
@@ -114,7 +116,14 @@ nav a:hover {
   overflow: hidden;
   width: 17%;
   min-width: 250px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2), -5px 0px 10px rgba(0, 0, 0, 0.2);
+  outline: rgba(0, 0, 0, 0.2) 0.5px solid;
+}
+
+.recipe-list-item:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2), -5px 0px 10px rgba(0, 0, 0, 0.2);
+  outline: none;
 }
 
 .recipe-list-item div[draggable="true"] {
